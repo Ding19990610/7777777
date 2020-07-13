@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 350px;
+            height: 80px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .wrap img {
+            width: 350px;
+            height: 80px;
+            position: absolute;
+            display: none;
+        }
+
+        #pare,
+        #next {
+            width: 30px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            cursor: pointer;
+            top: 20px;
+        }
+
+        #pare {
+            left: 0;
+        }
+
+        #next {
+            right: 0;
+        }
+        .show{
+            display: block !important;    
+            /* 优先级 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <img src="./img/公益广告1.jpg" class="show">
+        <img src="./img/公益广告2.jpg" alt="">
+        <img src="./img/公益广告3.jpg" alt="">
+        <div id="pare">
+            < </div>
+             <div id="next"> >
+        </div>
+    </div>
+
+    <script>
+        var pare = document.getElementById("pare");
+        
+        var next = document.getElementById("next");
+        var imgs = document.querySelectorAll("img");
+        imgs[0].style.display = "block";
+        var index = 0;
+        //上一张
+        // pare.addEventListener("click", function () {
+            
+        //     for (var i = 0; i < imgs.length; i++) {
+        //         imgs[i].style.display = "none";
+        //     }
+        //     --index;
+        //     if (index < 0) {
+        //         index = 2;
+        //     }
+        //     imgs[index].style.display = "block";
+        // });
+        // // 下一张
+        // next.addEventListener("click", function () {
+            
+        //     for (var i = 0; i < imgs.length; i++) {
+        //         imgs[i].style.display = "none";
+        //     }
+        //     ++index;
+
+        //     if (index > 2) {
+        //         index = 0;
+        //     }
+        //     imgs[index].style.display = "block";
+        // });
+
+        // pare.addEventListener("click", function () {
+           
+        //     for (var i = 0; i < imgs.length; i++) {
+        //         imgs[i].className = "";
+        //     }
+        //     index--;
+        //     if (index < 0) {
+        //         index = 2;
+        //     }
+        //     imgs[index].className = "show";
+        // });
+        // // 下一张
+        next.addEventListener("click", function () {
+            
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].className = '';
+            };
+            index++;
+            if (index > 2) {
+                index = 0;
+            }
+            imgs[index].className = "show";
+        });
+    </script>
+</body>
+
+</html>

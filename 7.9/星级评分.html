@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <style>
+        main{
+            width: 400px;
+            height: 150px;
+            margin: 100px auto;
+            padding: 20px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+        .iconfont{
+            position: absolute;
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .iconfont span{
+            width: 40px;
+            height: 40px;
+            font-size: 36px;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+        label{
+            position: absolute;
+            top: 110px;
+           
+        }
+        p{
+            position: absolute;
+            display: inline-block;
+            width: 200px;
+            height: 40px;
+            top: 80px;
+            left: 80px;
+            line-height: 40px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="iconfont">
+            <span class="white">&#xe64b;</span>
+            <span class="white">&#xe64b;</span>
+            <span class="white">&#xe64b;</span>
+            <span class="white">&#xe64b;</span>
+            <span class="white">&#xe64b;</span>
+        </div>
+        <label for="">评价:</label>
+        <p></p>
+    </main>
+    
+    <script>
+        var whiteStar = document.querySelectorAll(".white");
+        var p = document.querySelector("p");
+        console.log(whiteStar);
+        var review = ["差","挺差","一般般","还算不错","非常的好啊"];
+        for(var i=0;i<whiteStar.length;i++){
+            (function(){
+                var k = i;
+                whiteStar[k].addEventListener("click",function(){
+                    console.log(k);
+                    for(var j=0;j<=whiteStar.length;j++){
+                        whiteStar[j].innerHTML = "&#xe64b;";
+                        if(j <= k){
+                            whiteStar[j].innerHTML = "&#xe64a;";
+                        }
+                    }
+                    p.innerHTML = review[k];
+                }) 
+            })()
+        }
+    </script>
+</body>
+</html>

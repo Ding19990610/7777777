@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tab {
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            margin: 20px auto;
+            display: flex;
+            position: relative;
+            justify-content: space-around;
+
+        }
+
+        button {
+            border: 0;
+            outline: none;
+            color: #fff;
+            background-color: #999;
+        }
+
+        .content {
+            width: 400px;
+            height: 200px;
+            left: calc(50% - 200px);
+            padding: 10px;
+            position: absolute;
+            background-color: #999;
+            color: white;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab">
+        <button>显示内容1111</button>
+        <button>显示内容2222</button>
+        <button>显示内容3333</button>
+    </div>
+    <div class="content">
+        <span>1111111111111111111</span>
+    </div>
+    <div class="content">
+        <span>2222222222222222222</span>
+    </div>
+    <div class="content">
+        <span>3333333333333333333</span>
+    </div>
+    <script>
+        var btns = document.querySelectorAll("#tab>button");
+        console.log(btns);
+        var contents = document.querySelectorAll(".content");
+        console.log(contents);
+
+        contents[0].style.display = "block";
+        btns[0].style.backgroundColor = "red";
+        for (var i = 0; i < btns.length; i++) {
+            (function () {
+                var k = i;
+                btns[i].addEventListener("click", function () {
+                    // changed.value = this.value;
+                    contents[k].style.display = "block";
+                    btns[k].style.backgroundColor = "red";
+                    for (var j = 0; j < btns.length; j++) {
+                        if (this != btns[j]) {
+                            btns[j].style.backgroundColor = "#999";
+                            contents[j].style.display = "none";
+                        }
+                    }
+                })
+
+            })();
+            // contents[i].style.display = "none";
+            // btns[i].style.backgroundColor = "#999";
+
+        }
+    </script>
+</body>
+
+</html>

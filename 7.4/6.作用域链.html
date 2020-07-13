@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 作用域链  scope
+
+        //执行环境  : 变量的 运行环境  作用域
+
+        //执行期上下文  :函数执行创建：也就是函数执行时  创建了执行环境，为 局部作用域
+
+        // AO   :   站在预编译角度:  与 局部作用域 执行上下文 是 一回事
+
+        // scope 作用:  连接执行环境，形成 作用域链
+
+        // 执行期上下文 :  与 执行环境 scope 的关系是什么？
+        // 当函数执行时，会创建一个称为执行期上下文的内部对象。
+        // 一个执行期上下文定义了一个函数执行时的环境，函数每次执行时对应的执行上下文都是独一无二的，
+        // 所以多次调用一个函数会导致创建多个执行上下文，当函数执行完毕，执行上下文被销毁。
+
+        // scope  值:  为 数组   存的是：当前环境下 所有使用的变量
+        // 0 赋值 为自己作用域中的 AO 的地址
+        // 1 父级作用域
+
+        var n = "";
+        function foo(){
+            var b = 123;
+            function bar (){
+                var a = 11 
+            }
+        }
+        
+        // AO 作用域 作用域链
+
+        foo() //预编译:  AO{b:undefined,bar:function}
+
+        // js底层会创建一个执行环境(即 作用域)，AO{this:赋值触发函数，argument,a:undefined}
+
+        // --->[[scope]] 指向  scope 数组
+        // --->scope 数组长度是固定的，foo的scope 的长度为2：0是foo的AO对象,1是GO对象
+
+        //当变量运行使用时候，沿着scope 数组 从0索引开始查找，
+    </script>
+</body>
+</html>

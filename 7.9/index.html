@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .control {
+            width: 500px;
+            display: flex;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        .control div {
+            width: 100px;
+            height: 45px;
+            border: 1px solid skyblue;
+            display: inline-block;
+            text-align: center;
+            line-height: 45px;
+        }
+
+        .content {
+            width: 600px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: red;
+        }
+
+        .tab {
+            width: 600px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 900;
+            display: none;
+            position: absolute;
+            color: red;
+        }
+
+        .show {
+            display: block;
+            color: blue;
+        }
+
+        .active {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="control">
+            <div class="control-item active">选项1</div>
+            <div class="control-item">选项2</div>
+            <div class="control-item">选项3</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="tab show">选项1你好</div>
+        <div class="tab">选项2你好</div>
+        <div class="tab">选项3你好</div>
+    </div>
+    <script>
+        var con = document.querySelectorAll('.control-item');
+        var tab =  document.querySelectorAll(".tab");
+        con = [...con];
+        tab = [...tab];  //类数组  转换为真数组
+        // 因为类数组 无法调用数组的api
+        
+
+        var a=con[0].className;
+        con.forEach(function(item,index){
+            item.addEventListener('click',function(e){
+                var cnames = item.className;
+                con.forEach(function(item,index){
+                    item.className = 'control-item';
+                    tab[index].className = "tab";
+                })
+                this.className = cnames + ' active';
+                tab[index].className = "tab show"
+            })
+        })
+    </script>
+</body>
+
+</html>

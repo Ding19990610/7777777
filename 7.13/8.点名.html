@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 70px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            line-height: 70px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="start" class="box">开始点名</button>
+    <button id="stop" class="box">停止点名</button>
+    <div class="person"></div>
+    <script>
+        var names = ["丁龙飞", "坤坤", "ikun", "唐桑", "王宇航", "向文杰", "余菲", "周超", "周江龙", "苟永贞", "安素欣", "尧云峰", "吕建成", "韩建莉",
+            "陈晨"
+        ]
+        var started = document.querySelector("#start");
+        var stopped = document.querySelector("#stop");
+        var person = document.querySelector(".person");
+        var timer;
+
+        // 控制器， 防抖处理
+        var flag = true ;//开关  表示 未点击
+        started.onclick = function () {
+            if (flag) {
+                // 多次点击 保证timer 只是赋值一次
+                timer = setInterval(function () {
+                    var random = Math.floor(Math.random() * (names.length));
+                    person.innerHTML = names[random];
+                }, 100)
+            }
+            flag = false;
+
+        };
+        stopped.onclick = function () {
+            clearInterval(timer);
+            flag = true;
+        }
+        //BUG::当开始按钮点击次数过多时，无法清除timer;
+
+        // 网络性能优化
+        // 防抖 截流
+        // 多次点击按钮  以第一次为主 ------>timer 触底 
+        // 多次点击按钮  以第一次为主 ------>购物车计数器
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+    </div>
+    <script>
+        var box = document.querySelector(".box");
+
+
+        box.onclick = function (e) {
+            // 通过获取鼠标移动距离，将距离赋值给元素的left、top属性，实现元素的移动
+
+            document.onmousedown = function (e) {
+                console.log(e.clientX, e.clientY);
+                box.style.left = e.clientX - 50 + "px";
+                box.style.top = e.clientY - 50 + "px";
+            }
+        }
+        // 坑点1:元素默认margin 导致鼠标不在元素上
+        // * {
+        //     margin: 0;
+        //     padding: 0;
+        // }
+ 
+        // 坑点2:鼠标在元素的左上角
+        // box.style.left = e.clientX + "px";
+        //         box.style.top = e.clientY + "px";
+        // box.style.left = e.clientX - 50 + "px";
+        // box.style.top = e.clientY - 50 + "px";
+
+        //需求 在哪里点击，就在哪里拖
+
+    </script>
+</body>
+
+</html>

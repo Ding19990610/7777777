@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 350px;
+            height: 80px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .wrap img {
+            width: 350px;
+            height: 80px;
+            position: absolute;
+            display: none;
+        }
+
+        #pare,
+        #next {
+            width: 30px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            cursor: pointer;
+            top: 20px;
+        }
+
+        #pare {
+            left: 0;
+        }
+
+        #next {
+            right: 0;
+        }
+        .show{
+            display: block !important;    
+            /* 优先级 */
+        }
+        #boxes{
+            width: 100px;
+            text-align: center;
+            position: absolute;
+            left:120px;
+            top:60px;
+        }
+        .box{
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            /* background-color: #999; */
+            margin-left: 10px;
+            background-color: #ccc;
+        }
+        .boxClicked{
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+      <img src="./img/公益广告1.jpg" >       <!--    class="show" -->
+        <img src="./img/公益广告2.jpg" alt="">
+        <img src="./img/公益广告3.jpg" alt="">
+        <div id="pare">
+            < </div>
+             <div id="next"> >
+        </div>
+        <div id="boxes">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+
+    <script>
+        // 第一步:确认效果初始化:  1  html+css  2:js方式 完成初始化样式
+        // 第二步:分析用户行为:=====>>给什么元素 绑定什么事件？
+        // 第三步:事件(行为)发生，哪一个html元素，发生css的动态变化
+        // 完成动态交互,可能需要 状态数据,声明变量 然后代表内容
+
+
+        // 注意:表示状态变量,计数器:true/false 1
+
+        // 作用域问题: 改变量需要给哪些函数使用?===>>所有使用的地方,都能访问到的 一个公共的作用域中
+
+        // 变量污染问题:  污染 分开声明:闭包解决污染问题
+        var pare = document.getElementById("pare");
+        var next = document.getElementById("next");
+        var imgs = document.querySelectorAll("img");
+        var box = document.querySelectorAll(".box");
+        imgs[0].style.display = "block";
+        box[0].className = "box boxClicked";
+        var index = 0;
+        
+        for(var i=0;i<box.length;i++){
+            (function(i){
+                //圆点 点击事件
+                box[i].addEventListener("click",function(){
+                    // 点击小圆点.更改当前显示元素的索引值index
+                    index = i;
+                // 每次添加前,都要清除一下上一次操作的样式
+                    for(var j=0;j< box.length;j++){
+                        box[j].className = "box";
+                        imgs[j].style.display = "none";
+                    }
+                    box[i].className = "box boxClicked";
+                    imgs[i].style.display = "block";
+                })
+            })(i)
+        }
+        
+        //上一张
+        pare.addEventListener("click", function () {
+            
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].style.display = "none";
+                box[i].className = "box";
+            }
+            --index;
+            if (index < 0) {
+                index = imgs.length - 1;
+            }
+            imgs[index].style.display = "block";
+            box[index].className = "box boxClicked";
+        });
+        // 下一张
+        next.addEventListener("click", function () {
+            
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].style.display = "none";
+                box[i].className = "box";
+            }
+            ++index;
+
+            if (index > imgs.length - 1) {
+                index = 0;
+            }
+            imgs[index].style.display = "block";
+            box[index].className = "box boxClicked";
+        });
+    </script>
+</body>
+
+</html>

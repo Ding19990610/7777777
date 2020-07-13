@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>点击内容111111111</h2>
+    <div>内容111111111111</div>
+    <h2>点击内容222222222</h2>
+    <div>内容111111111111</div>
+    <h2>点击内容333333333</h2>
+    <div>内容111111111111</div>
+    <script>
+        var h2 = document.querySelectorAll("h2");
+        var div = document.querySelectorAll("div");
+        for(var i=0;i<h2.length;i++){
+            (function(){
+                var x = i;
+                h2[i].onclick = function(){
+                    div[x].style.display = "block";
+                    if(div[x].style.display = "block"){
+                        div[x].style.display = "none";
+                    }
+                }
+            })()
+        }
+    </script>
+</body>
+</html>

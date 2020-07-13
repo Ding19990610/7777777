@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            background-color: #fff;
+        }
+
+        .content p {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 触底: -->
+    <div class="content">
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+        <p>增加高度</p>
+    </div>
+    <script>
+        // 页面高度 = 视图窗口高度 + 滚动条高度
+        var wrap = document.querySelector(".content");
+        window.onscroll = function () {
+            var H = innerHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var pageHeight = document.body.offsetHeight;
+            var data = ["java", "javascript", "php", "python", "C++", "C#"];
+            if (H + scrollTop >= pageHeight) {
+                //    alert("到底了");
+                //由于慢，导致多次 重复触底
+                // ---->>>解决方式:防抖
+                setTimeout(function () {
+                    for (var i = 0; i < data.length; i++) {
+                        var p = document.createElement("P");
+                        p.innerHTML = data[i];
+                        wrap.appendChild(p)
+                    }
+                }, 0)
+            };
+        }
+    </script>
+</body>
+
+</html>

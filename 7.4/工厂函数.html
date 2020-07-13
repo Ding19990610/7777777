@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Animal(name,age){
+            this.name = name;
+            this.age = age ;
+        }
+        Animal.prototype.getName = function(){
+            return this.name;
+        }
+        var dlf = new Animal("丁龙飞",22);
+        // 工厂函数
+        function Person(name,age){
+            return {
+                name:name,
+                age:age,
+                getName : function(){
+
+                }
+            }
+        }
+        Person.prototype.getName = function(){
+            return this.name;
+        }
+        var ts = new Person(name,22);
+        console.log(dlf);
+        // console.log(dlf.getName)
+    </script>
+</body>
+</html>

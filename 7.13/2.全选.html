@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选</title>
+    <style>
+        div {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <input type="checkbox" class="checkAll"><span id="checkAllMessage">全选</span>
+            <input type="checkbox" class="checkNone"><span id="other">反选</span>
+        </div>
+        <div><input type="checkbox" class="check"><span>选项内容001</span></div>
+        <div><input type="checkbox" class="check"><span>选项内容002</span></div>
+        <div><input type="checkbox" class="check"><span>选项内容003</span></div>
+        <div><input type="checkbox" class="check"><span>选项内容004</span></div>
+        <div><input type="checkbox" class="check"><span>选项内容005</span></div>
+    </form>
+    <script>
+        var checks = document.querySelectorAll(".check");
+        var checksMessage = document.querySelector("#checkAllMessage");
+        var checksOther = document.querySelector("#other");
+        checks = Array.from(checks);
+        var checkALl = document.querySelector(".checkAll");
+        var checkNone = document.querySelector(".checkNone");
+        checks.forEach(function (item) {
+            // item表示当前选中的元素
+            item.addEventListener("change", function () {
+                var span = item.nextElementSibling; //itme的下一个兄弟元素
+                if (item.checked) { //选中
+                    // 当checkbox被选中时,让兄弟元素字体变色
+                    span.style.color = "red";
+                } else { //未选中
+                    span.style.color = "black";
+                }
+                isCheckedAll();
+            });
+
+        });
+        checkALl.addEventListener("change", function () {
+            // 如果选中全选，选择项全部被勾选
+            checks.forEach(function (item) {
+                if (checkALl.checked) {
+                    checks.forEach(function (item) {
+                        item.checked = true;
+                        item.nextElementSibling.style.color = "red";
+                    });
+                    checksMessage.innerHTML = "全不选"
+                } else {
+                    checks.forEach(function (item) {
+                        item.checked = false;
+                        item.nextElementSibling.style.color = "black";
+                    });
+                    checksMessage.innerHTML = "全选"
+                }
+            });
+        });
+
+        // 反选
+        checkNone.addEventListener("change", function () {
+            checks.forEach(function (item) {
+                item.checked = !item.checked;
+                if (item.checked) {
+                    item.nextElementSibling.style.color = "red";
+                } else {
+                    item.nextElementSibling.style.color = "black";
+                }
+            });
+            isCheckedAll();
+        })
+        // 代码重复率高，封装成函数
+        function isCheckedAll(){
+            for (var i = 0; i < checks.length; i++) {
+                    if (checks[i].checked == false) {
+                        checkALl.checked = false;
+                        checksMessage.innerHTML = "全选"
+                        break;
+                    } else {
+                        checkALl.checked = true;
+                        checksMessage.innerHTML = "全不选"
+                    }
+                }
+        }
+
+        // checkNone.addEventListener("change", function () {
+        //     if (checkNone.checked) {
+        //         checks.forEach(function (item) {
+        // if (item.checked) {
+        //     item.checked = false;
+        //     item.nextElementSibling.style.color = "black";
+        // } else {
+        //     item.checked = true;
+        //     item.nextElementSibling.style.color = "red";
+        // }
+        //         });
+        //     } else {
+        //         checks.forEach(function (item) {
+        //             if (item.checked) {
+        //                 item.checked = false;
+        //                 item.nextElementSibling.style.color = "black";
+        //             } else {
+        //                 item.checked = true;
+        //                 item.nextElementSibling.style.color = "red";
+        //             }
+        //         });
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

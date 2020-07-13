@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>返回顶部</title>
+    <style>
+        p {
+            height: 150px;
+            background-color: red;
+        }
+
+        button {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <button>返回顶部</button>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+    <p>内容增加高度</p>
+
+    <script>
+        // 没有动画的返回顶部
+        // window.onscroll = function () {
+        //     console.log("滚动了");
+        // }
+        // 如何初始化滚动条  指定滚动到某一个位置
+        // para:对象   top为纵向滚动  left为横向滚动
+
+        // window.scrollTo({
+        //     top: 200
+        // })
+
+        // 返回顶部
+        var btn = document.querySelector("button");
+        window.onscroll = function () {
+            var top = document.documentElement.scrollTop;
+            var H = innerHeight;
+            // scrollHeight: 获取滚动条元素的高度 
+            //  == offsetHeight  
+            var pageH = document.documentElement.scrollHeight || document.body.scrollHeight;
+            // var h = document.documentElement.offsetHeight;
+
+            if (top + H >= pageH) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+        // 单击 返回顶部
+        // btn.onclick = function () {
+        // window.scrollTo({
+        //     top: 0
+        // })
+        // }
+        btn.onclick = function () {
+            //1、 获取当前滚动条的位置
+            var top = document.documentElement.scrollTop;
+            // 实现js动画效果
+            var timer = setInterval(() => {
+                top -= 10;
+                window.scrollTo({
+                    top: top * 2  //滚动条每次滚动的值 是一个动态的值---->>>动画效果
+                })
+
+                // 出口
+                if (top <= 0) {
+                    clearInterval(timer);
+                }
+
+            }, 16.2);
+        }
+    </script>
+</body>
+
+</html>

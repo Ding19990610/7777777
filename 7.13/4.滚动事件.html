@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动事件</title>
+    <style>
+        p {
+            padding: 50px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>我是内容01</p>
+    <p>我是内容02</p>
+    <p>我是内容03</p>
+    <p>我是内容04</p>
+    <p>我是内容05</p>
+    <p>我是内容06</p>
+    <p>我是内容07</p>
+    <p>我是内容08</p>
+    <p>我是内容09</p>
+    <p>我是内容10</p>
+    <script>
+        //滚动条
+
+        // pc ： 添加 加载更多   楼层滚动  滚动联动
+        //移动 ： 下拉刷新 上拉加载更多，滚动联动……
+
+        window.onscroll = function (e) {
+            // console.log("滚动条滚动了");
+            // console.log(e);
+            var  h = document.documentElement.scrollTop;
+            console.log(h);
+        }
+        // 获取滚动条滚动的高度
+        // 指定滚动条滚动到某一个位置
+        // 结合动画实现小姑哦
+    </script>
+</body>
+
+</html>

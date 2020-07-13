@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         var arr = [1,2,3,4,'dd']
+        // // 1 将arr 数组变为字符串
+        // var str = String(arr);
+        // str = str.replace(/,/g,"");
+        // console.log(str)
+        // //2：将字符串颠倒
+        // str = str.split("").reverse().toString().replace(/,/g,"");
+        // console.log(str)
+        // //3：将字符串中 dd 替换为 FF
+        // str = str.replace("dd","FF");
+        // console.log(str)
+        // var arr = [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3]
+        // // arr 数组去重
+        // var arr2 = [];
+        // for (var i = 0; i < arr.length; i++) {
+        //     if (arr2.indexOf(arr[i]) == -1) {
+        //         arr2.push(arr[i])
+        //     }
+        // }
+        // console.log(arr2)
+        // var str = 'dfjqwoerjowqejr'
+        // // 统计每一个字符出现的次数
+        // var obj = {};
+        // // var flag = false;
+        // for (var i = 0; i < str.length; i++) {
+        //     for (var key in obj) {
+        //         if (str[i] === key) {
+        //             // flag = true;
+        //             obj[str[i]] = 0;
+        //             // break;
+        //         } else {
+        //             // obj[str[i]] = 0;
+        //             break;
+        //         }
+        //     }
+        //     // if (!flag) {
+        //     //     obj[str[i]] = 0;
+        //     // }
+        // }
+        // for (var key2 in obj) {
+        //     for (var j = 0; j < str.length; j++) {
+        //         if (key2 === str[j]) {
+        //             ++obj[key2];
+        //         }
+        //     }
+        // }
+        // console.log(obj)
+        // function maxNum(num) {
+        //     var max1 = num[0];
+        //     for (var i = 0; i < num.length; i++) {
+        //         max1 = max1 > num[i] ? max1 : num[i]
+        //     }
+        //     return max1
+        // }
+        // var num = [1, 2, 3, 4, 5, 4, 2, 1, 7];
+        // var max = maxNum(num);
+        // console.log(max)
+        // var arr = [1,2,3,4,'dd']
+        //     console.log(arr.toString());
+        //     console.log(arr.toString().replace('dd','FF'));
+        var str = 'abcdefghijklmnopqrstuvwxyz1234567890';
+//随机输出6为的字符
+var length = str.length;
+var startIndex = Math.ceil(Math.random() * (length - 6));
+var endIndex = Math.ceil(Math.random() * (length - 6) + 6);
+var str1 = str.slice(startIndex,endIndex)
+console.log(str1)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    #box {
+        width: 300px;
+        height: 150px;
+        border: 2px solid #000;
+        background-color: #ccc;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px;
+        display: none;
+    }
+    .box{
+        width: 300px;
+        height: 40px;
+    }
+    .box label{
+        display: inline-block;
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+    }
+    #btn{
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        border: 0;
+        outline: none;
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .close{
+        width: 40px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        margin-left: 100px;
+    }
+</style>
+
+<body>
+    <button id="btn">显示弹出框</button>
+        <form id="box">
+            <div class="box">
+                <label for="">用户名:</label><input type="text">
+            </div>
+            <div class="box">
+                <label for="">密  码:</label><input type="text">
+            </div>
+            <button class="close">退出</button>
+        </form>
+    <script>
+        var btn = document.querySelector("#btn");
+        var box = document.querySelector("#box");
+        var close = document.querySelector(".close");
+        var ipt = document.querySelectorAll("input");
+        btn.onclick = function () {
+            box.style.display = "block";
+        }
+        close.onclick = function () {
+            box.style.display = "none";
+        }
+        box.onmousedown = function (e) {
+            var offsetX = event.offsetX;
+            var offsetY = event.offsetY;
+            console.log(e.pageX);
+            document.onmousemove = function (e) {
+                box.style.left = e.clientX - offsetX + "px";
+                box.style.top = e.clientY - offsetY + "px";
+            }
+        }
+        ipt.onmousedown = function(e){
+            e.stopPropagation();
+        }
+        box.onmouseup = function (e) {
+            document.onmousemove = function (e) {
+                box.style.left = document.offsetLeft + "px";
+                box.style.top = document.offsetTop + "px";
+            }
+        }
+    </script>
+</body>

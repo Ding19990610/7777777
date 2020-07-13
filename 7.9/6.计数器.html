@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: blue;
+        }
+
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            position: relative;
+            text-align: center;
+            top: -10px;
+            left: 0px;
+            font-size: 30px;
+        }
+
+        div>img {
+            width: 40px;
+            height: 40px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="reduce">
+        <img src="../7.9/img/jianhao.png" alt="">
+    </div>
+    <span id="num"></span>
+    <div id="add"><img src="../7.9/img/jiahao.png" alt=""></div>
+    <script>
+        var add = document.querySelector("#add");
+        var reduce = document.querySelector("#reduce");
+        var num = document.querySelector("#num");
+        var count = 0;
+        num.innerHTML = count; //初始化
+        add.addEventListener("click", function () {
+            ++count;
+            if (count >= 4) {
+                count = 0;
+            }
+            num.innerHTML = count;
+        })
+        reduce.addEventListener("click", function () {
+            --count;
+            // 验证数据
+            if (count < 0) {
+                count = 3;
+            }
+            // 将count 添加到span中
+            num.innerHTML = count;
+        })
+    </script>
+</body>
+
+</html>

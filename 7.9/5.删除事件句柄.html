@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="add">0</button>
+    <script>
+        var add = document.querySelector(".add");
+        var count = 0 ;
+        add.addEventListener("click",function myFun(e){
+            e.stopPropagation();
+            ++count;
+            console.log(count);
+            add.innerHTML = count;
+            // 当count==5时，删除add点击事件
+            if(count == 5){
+                //removeEventListener：删除事件句柄
+                // para1:删除事件名
+                // para2:删除事件处理函数
+                add.removeEventListener("click",myFun);
+                // removeEvent(add,"click",myFun)
+                // console.log("事件删除了");
+            }
+        });
+        // function removeEvent(el,eventName,eventFun){
+        //     if(el,removeEventListener){
+        //         removeEventListener(eventName,eventFun)
+        //     }else{
+        //         el.detachEvent(eventName,eventFun);
+        //     }
+        // }
+    </script>
+</body>
+</html>

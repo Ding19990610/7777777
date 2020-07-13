@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>请填写下面的调查报告</h1>
+    <form action="">
+        <div>
+            <label for="name">姓名:</label>
+            <input type="text" name = "name" id="name">
+        </div>
+        <div>
+            <label for="age">年龄:</label>
+            <select name="age" id="select">
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+            </select>
+        </div>
+        <div>
+            <label for="hobby">爱好:</label>
+            <!-- <input type="checkbox" name = "hobby" value = "读书">读书
+            <input type="checkbox" name = "hobby" value = "跑步">跑步
+            <input type="checkbox" name = "hobby" value = "游泳">游泳 -->
+            <input type="text" name = "hobby" id="hobby">
+        </div>
+        <div for = "sex">
+            <input type="radio" name = "sex" value = "男" class="sex">男
+            <input type="radio" name = "sex" value = "女" class="sex">女
+        </div>
+        <div>
+            <input type="submit" name="submit" id="submit">
+        </div>
+    </form>
+    <script>
+        var submit = document.getElementById("submit");
+        var cname = document.getElementById("name");
+        var selects = document.querySelectorAll("#select>option");
+        var hobby = document.getElementById("hobby");
+        var radio = document.querySelectorAll(".sex");
+        submit.onclick = function(e){
+            e.preventDefault();
+            var nm = cname.value;
+            var selectValue = "";
+            for(var i=0;i<selects.length;i++){
+                if(selects[i].selected){
+                    selectValue = selects[i].value;
+                    break;
+                }
+            }
+            var hobbies = hobby.value;
+            var sex = "";
+            for(var j =0;j<radio.length;j++){
+                if(radio[j].checked){
+                    sex = radio[j].value;
+                }
+            }
+            console.log(nm,selectValue,hobbies,sex);
+            
+        }
+    </script>
+</body>
+</html>

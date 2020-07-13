@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .check {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #ccc;
+        }
+
+        .colors {
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 0;
+            outline: none;
+            background-color: #ccc;
+        }
+
+        #changed {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="check">
+        <button name="color" class="colors" value="red">红色</button>
+        <button name="color" class="colors" value="orange">橙色</button>
+        <button name="color" class="colors" value="yellow">黄色</button>
+        <button name="color" class="colors" value="green">绿色</button>
+        <button name="color" class="colors" value="blue">蓝色</button>
+    </div>
+    <button id="changed">点击改变下面文字的颜色</button>
+    <h2>颜色变化的字体</h2>
+    <script>
+        var color = document.querySelectorAll(".colors");
+
+        var checkColor = null
+        for (var i = 0; i < color.length; i++) {
+            (function () {
+                var x = i;
+
+                color[i].onclick = function () {
+                    checkColor = color[x];
+                    // 添加样式之前，清空 原有的样式，回到初始化样式 状态
+                    for (var j = 0; j < color.length; j++) {
+                        color[j].style = "";
+                    }
+                    color[x].style.backgroundColor = color[x].value;
+                }
+            })();
+        }
+
+        changed.onclick = function () {
+            console.log(checkColor);
+            var changed = document.getElementById("changed");
+            var txt = document.getElementsByTagName("h2")[0];
+            // checkColor 默认值为null，当不点击上面的颜色时点击，会报错,
+            if(checkColor == null){
+                txt.style.color = "#ccc";
+            }
+            txt.style.color = checkColor.value;
+        }
+    </script>
+</body>
+
+</html>
