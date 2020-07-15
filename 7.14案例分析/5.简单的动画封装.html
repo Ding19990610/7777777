@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">学习</div>
+    <script>
+        var box = document.querySelector(".box");
+        // box.style["color"] = "blue";
+        // box.style[color] = "blue";
+        // $animate 实现动画
+        // $animate(box,0.5,{opacity:0.5});
+        // para1:el--->添加动画效果的 【元素】
+        // para2:style--->css 样式动画
+        //para3:time----->   时间
+        function $animate(el, stylels, time) {
+            for (var k in stylels) {
+                var a = getComputedStyle(el, null)[k];
+                console.log(a);
+
+                var b = stylels[k];
+                el.style[k] = b;
+
+                el.style.transition = "all " + time;
+            }
+        }
+        box.onclick = function(){
+            $animate(box, {opacity:0.3}, "1s");
+        }
+    </script>
+</body>
+
+</html>

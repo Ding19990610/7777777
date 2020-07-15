@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector(".box");
+        box.onmousedown = function () {
+            var x = event.offsetX;
+            var y = event.offsetY;
+            document.onmousemove = function (e) {
+                // 如何使用left的最大值和最小值
+                var moveX = e.clientX - x;
+                var moveY = e.clientY - y;
+                // left 最小值 0 
+                moveX <= 0 ? 0 : moveX;
+
+                // left 最大值  浏览器视图窗口宽度  (浏览器兼容问题)
+                moveX >= (innerWidth - 150) ? moveX = (innerWidth - 150) : moveX;
+
+                // top  最小值 0
+                moveY <= 0 ? 0 : moveY;
+
+                // top 最大值  浏览器视图窗口高度
+                moveY >= (innerHeight - 150) ? moveY = (innerHeight - 150) : moveY;
+
+                box.style.left = moveX + "px";
+                box.style.top = moveY + "px";
+
+                // 处理 BUG ：当鼠标移出边界,鼠标移动事件没有清除
+                if (e.clientX < 0 || e.clientX > innerWidth || e.clientY < 0 || e.clientY > innerHeight) {
+                    document.onmousemove = null;
+                }
+                // left 最小值 0 
+                // if (moveX <= 0) {
+                //     moveX = 0;
+                // }
+                // left 最大值  浏览器视图窗口宽度  (浏览器兼容问题)
+                // if (moveX >= innerWidth - 150) {
+                //     moveX = innerWidth - 150;
+                // }
+                // top  最小值 0
+                // if (moveY <= 0) {
+                //     moveY = 0;
+                // }
+                // top 最大值  浏览器视图窗口高度
+                // if (moveY >= innerHeight - 150) {
+                //     moveY = innerHeight - 150;
+                // }
+            }
+
+
+        }
+        box.onmouseup = function () {
+            document.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

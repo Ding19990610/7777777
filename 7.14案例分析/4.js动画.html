@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* opacity: 1; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector(".box");
+        // js实现动画
+        // 方式一:
+        // box.onmouseover = function(){
+        //     box.style.opacity = "0.3";
+        //     box.style.transition = "all 0.5s"
+        // }
+        // box.onmouseout = function(){
+        //     box.style.opacity = "1";
+        //     box.style.transition = "all 0.5s"
+        // }
+
+        // 方式二:setInterval
+        // 要知道是哪一个css属性在变化，完成动画
+        // 要知道动画执行时间多少
+        // css值 每次递增或递减多少   知道单次执行的时间是多久
+        box.onmouseover = function(){
+
+            var opacity = 1;
+            var timer = setInterval(function(){
+                opacity -= 0.1;
+                box.style.opacity = opacity;
+                if(opacity <=0.3){
+                    box.style.opacity = 0.3;
+                    clearInterval(timer);
+                }
+            },70)
+        }
+
+        // 方式三 : css 完成动画   通过添加类名方式添加
+    </script>
+</body>
+</html>

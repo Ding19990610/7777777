@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        #btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            border: 0;
+            outline: none;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #box {
+            position: absolute;
+            width: 300px;
+            height: 120px;
+            margin: 0 auto;
+            background-color: #ccc;
+            left:50%;
+            top:-200px;
+            opacity: 1;
+        }
+
+        #top {
+            width: 300px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 24px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #left {
+            display: inline-block;
+            width: 149px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+            border-right: 1px solid #ccc;
+        }
+
+        #right {
+            display: inline-block;
+            width: 145px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">显示弹出框</button>
+    
+        <div id="box">
+            <div id="top">请确认是否删除弹出框</div>
+            <div id="left" class="answer">取消</div>
+            <div id="right" class="answer">确认</div>
+        </div>
+    
+    
+</body>
+
+</html>
+<script>
+    var btn = document.querySelector("#btn");
+    var body = document.querySelector("body");
+    var answer = document.querySelectorAll(".answer");
+    console.log(answer);
+    answer = [...answer];
+
+    var confirmBtn = document.querySelector("#right"); //确认
+    var cancelBtn = document.querySelector("#left"); //取消
+    btn.addEventListener("click", function () {
+        addAnimate(box,"top",200,1,function(){});
+    })
+    function getStyle(e,key){
+            var res ;
+            if(e.currentStyle){
+                // ie
+                res = e.currentStyle[key];
+            }else{
+                // 非ie
+                res = getComputedStyle(e,null)[key];
+            }
+            return res;
+        }
+    function addAnimate(e,key,value,time,callback){
+            var start = getStyle(e,key);
+            console.log(start);
+            start = parseFloat(start); //初始width
+            var s = value - start; //动画过程量
+            time = time * 1000; //秒 变 毫秒
+            var timer = setInterval(function(){
+                if(s > 0){
+                    if(start >= value){
+                        (key == "opacity" || key == "zIndex") ? (e.style[key] = value) : (e.style[key] = value + "px");
+                        clearInterval(timer);
+                        if(typeof callback === "function"){
+                            callback();
+                        }   
+                        
+                    }
+                }else{
+                    if(start <= value){
+                        (key == "opacity" || key == "zIndex") ? (e.style[key] = value) : (e.style[key] = value + "px");
+                        clearInterval(timer);
+                        if(typeof callback === "function"){
+                            callback();
+                        }   
+                    }
+                }
+
+                start += s / Math.ceil(time / 16.7);
+                e.style[key] = start + "px";
+                if(start >= value){
+                    e.style[key] = value + "px";
+                    clearInterval(timer);
+                    if(typeof callback === "function"){
+                            callback();
+                        }   
+                }
+               console.log(e.style[key]);
+               if(key == "zIndex" || key == "opacity"){
+                e.style[key] = start;
+               }else{
+                e.style[key] = start + "px";
+               }
+            },16.7)
+        }
+    confirmBtn.addEventListener("click", function () {
+        addAnimate(box,"opacity",0,1,function(){});
+    })
+    cancelBtn.addEventListener("click", function () {
+      
+        addAnimate(box,"opacity",0.1,1,function(){});
+    })
+    
+</script>

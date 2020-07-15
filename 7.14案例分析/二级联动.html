@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select{
+            width: 130px;
+            height: 30px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <select name="" id="select1">
+        
+    </select>
+    <select name="" id="select2">
+        
+	</select>
+	<script src="./area.js"></script>
+    <script >
+	var select1 = document.querySelector("#select1");
+	var select2 =  document.querySelector("#select2");
+	var provinces = [];
+	var city = [];  
+	for(var key in area){
+		// console.log(key);  //所有的省
+		provinces.push(key);	//所有的省份   组合的数组
+		for(var i=0;i<provinces.length;i++){
+			var option1 = document.createElement("option");
+			option1.innerHTML = provinces[i];
+		}
+		select1.appendChild(option1);
+		console.log(area[key]);
+		console.log(area[key][0]);
+        for(var key2 in area[key]){
+			console.log(key2);
+			city.push(key2);
+			console.log(area[key][i]);
+            // for(var k in area[key][i]){
+            //     onecity.push(k);  //每次把一个省份的所有市存到onecity里面
+            // }
+		}
+		// console.log(city);
+        // cities.push(onecity);  //每次把一个省份的所有市的数组 存到cities里面
+    }
+
+
+    // var provinces = [];  //存放省份
+    // var cities = [];  //存放市
+    // var body = document.querySelector("body");
+    // var select1 = document.querySelector("#select1");
+    // var select2 =  document.querySelector("#select2");
+    // for(var key in area){
+    //     provinces.push(key);  //所有省份的数组
+    //     for(var i=0;i<area[key].length;i++){
+    //         var onecity = [];  
+    //         for(var k in area[key][i]){
+    //             onecity.push(k);  //每次把一个省份的所有市存到onecity里面
+    //         }
+    //     }
+    //     cities.push(onecity);  //每次把一个省份的所有市的数组 存到cities里面
+    // }
+    // console.log(cities);//每个省份对应下标所有的市的数组
+   
+    // var cities2 = {...cities};
+    // // console.log(cities2);
+    // for(var i=0;i<provinces.length;i++){
+    //     for(var k in cities2) {
+    //         k = provinces[i];
+    //     }
+    // }
+    // console.log(cities2);
+    // var num = [];
+    // for(var kk in cities2){
+    //     var option1 = document.createElement("option");
+    //     option1.innerHTML = provinces[kk];
+    //     select1.appendChild(option1);
+    //     num.push(Number(kk));
+    // }
+    // console.log(option1);
+    // console.log(num);
+    
+    // // console.log(provinces[0]);
+    // // select1.appendChild(option1);
+
+
+    // select1.onchange = function(){
+    //     var province = document.querySelectorAll("#select1>option");
+    //     for(var i=0;i<province.length;i++){
+    //         if(province[i].selected){
+    //             console.log(province[i].innerHTML);
+    //             console.log(cities[i]);
+    //             select2.innerHTML = "";
+    //             for(var j=0;j<cities[i].length;j++){
+    //                 var option2 = document.createElement("option");
+    //                 option2.innerHTML = cities[i][j];
+    //                 select2.appendChild(option2);
+    //             }
+    //             console.log(i);
+    //         }
+    //     }
+    // } 
+    
+    </script>
+</body>
+</html>

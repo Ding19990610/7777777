@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .box:hover{
+            width: 200px;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // 获取e 元素 key 属性 的  样式值
+        function getStyle(e,key){
+            var res ;
+            if(e.currentStyle){
+                // ie
+                res = e.currentStyle[key];
+            }else{
+                // 非ie
+                res = getComputedStyle(e,null)[key];
+            }
+            return res;
+        }
+
+        var box = document.querySelector(".box");
+
+        // para1:元素
+        // para2:属性名
+        // para3:属性名对应的属性值
+        // para4:执行时间
+        // para5:回调函数   表示 动画执行完毕后，进行下一步动作
+        function addWidth(e,key,value,time,callback){
+            
+            var start = getStyle(e,key);
+            console.log(start);
+            start = parseFloat(start); //初始width
+            var s = value - start; //动画过程量
+            time = time * 1000; //秒 变 毫秒
+            var timer = setInterval(function(){
+
+                if(s > 0){
+                    if(start >= value){
+                        (key == "opacity" || key == "zIndex") ? (e.style[key] = value) : (e.style[key] = value + "px");
+                        clearInterval(timer);
+                        if(typeof callback === "function"){
+                            callback();
+                        }   
+                        
+                    }
+                }else{
+                    if(start <= value){
+                        (key == "opacity" || key == "zIndex") ? (e.style[key] = value) : (e.style[key] = value + "px");
+                        clearInterval(timer);
+                        if(typeof callback === "function"){
+                            callback();
+                        }   
+                    }
+                }
+
+                start += s / Math.ceil(time / 16.7);
+                e.style[key] = start + "px";
+                if(start >= value){
+                    e.style[key] = value + "px";
+                    clearInterval(timer);
+                    if(typeof callback === "function"){
+                            callback();
+                        }   
+                }
+               console.log(e.style[key]);
+               if(key == "zIndex" || key == "opacity"){
+                e.style[key] = start;
+               }else{
+                e.style[key] = start + "px";
+               }
+            },16.7)
+        }
+        addWidth(box,"width",500,0.5,function(){
+            // alert("第一个动画执行完毕")
+            addWidth(box,"height",500,0.5,function(){
+                // alert("第二个动画执行完毕")
+            })
+        });
+       
+    </script>
+</body>
+</html>
