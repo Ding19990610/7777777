@@ -38,13 +38,14 @@
 		console.log(area[key][0]);
         for(var key2 in area[key]){
 			console.log(key2);
-			city.push(key2);
-			console.log(area[key][i]);
-            // for(var k in area[key][i]){
-            //     onecity.push(k);  //每次把一个省份的所有市存到onecity里面
-            // }
+			
+			// console.log(area[key][i]);
+            for(var k in area[key][i]){
+               var onecity =  onecity.push(k);  //每次把一个省份的所有市存到onecity里面
+			}
+			city.push(onecity);
 		}
-		// console.log(city);
+		console.log(city);
         // cities.push(onecity);  //每次把一个省份的所有市的数组 存到cities里面
     }
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>嘻嘻嘻</div>
+
+    <script>
+          //修改某一个元素中的内容
+
+        /*
+
+        */
+        var div = document.getElementsByTagName("div")[0];
+        
+        function html(el,str){
+            el.innerHTML = str ;
+            return el;
+        }
+        html(div,"hello world");
+    </script>
+</body>
+</html> 

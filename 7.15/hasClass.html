@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box a b"></div>
+    <script>
+        /*
+        hasClass(): 判断某个元素中，是否含有某一个类名
+        options: （element、string）
+        return： true 存在 /false  不存在
+        */
+
+        var box = document.querySelector(".box");
+        function hasClass(el,str){
+            var classes = el.className;
+            classes = classes.split(" ");
+            // classes = classes.split(/\s+/);
+            //    /\s+/ ::匹配多个空格，  
+            //    \s:空格字符，+ ： 无限次匹配
+
+            return classes.indexOf(str) !== -1 ? true:false
+        }
+        console.log( hasClass(box ,"wrap") );
+        console.log( hasClass(box ,"box") );
+    </script>
+</body>
+</html>

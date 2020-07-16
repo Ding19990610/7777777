@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+    <script src="./area.js"></script>
+</head>
+
+<body>
+    <form action="">
+        <select name="province" id="province">
+
+        </select>
+        <select name="city" id="city">
+
+        </select>
+        <select name="area" id="area">
+
+        </select>
+    </form>
+    <script>
+        var data = area;
+        var province = document.querySelector("#province");
+        var city = document.querySelector("#city");
+        var Area = document.querySelector("#area");
+        //1、初始化  省 循环拿到data里的key  添加到provice中
+        // 全局变量污染，用立即执行函数
+        (function () {
+            updateArea(province, data);
+        })();
+        var cityData = data[province[0].value][0];
+        //1.1  初始化  市  
+        (function () {
+            updateArea(city, cityData);
+        })();
+        //1.2  初始化  区  
+        (function () {
+            var areaData = cityData[city[0].value];
+            for (var i = 0; i < areaData.length; i++) {
+                updateArea(Area, areaData[i]);
+            }
+        })();
+        //2、当选择省份发生变化时
+        province.onchange = function () {
+            //如何获取用户 选择了哪一个option
+            // select标签.selectedIndex::返回被选中的option的索引值
+            // console.log(province.selectedIndex);
+            var cityIndex = province[province.selectedIndex].value;
+            console.log(cityIndex); // 获取点击的省
+            cityData = data[cityIndex][0];
+            console.log(cityData);
+            //清空select  city
+            city.innerHTML = "";
+            Area.innerHTML = "";
+            // 更新市
+            updateArea(city, cityData);
+            //清空select  Area
+            Area.innerHTML = "";
+            // 更新区
+            var areaIndex = city[city.selectedIndex].value; //获取市
+            var areaData = cityData[areaIndex];
+            console.log(areaData);
+            for (var i = 0; i < areaData.length; i++) {
+                updateArea(Area, areaData[i]);
+            }
+        }
+        //3:当用户 选择的市 发生变化
+        city.onchange = function () {
+            // 3.1 用户选择了哪一个市
+            var areaIndex = city[city.selectedIndex].value;
+            console.log(areaIndex); // 获取点击的省
+            // 3.2 根据选择的市 获取区数据
+            var areaData = cityData[areaIndex];
+            console.log(areaData);
+            //3.3 根据区数据 更新区select area
+            //清空select  Area
+            Area.innerHTML = "";
+            // 更新区
+            for (var i = 0; i < areaData.length; i++) {
+                updateArea(Area, areaData[i]);
+            }
+        }
+        function updateArea(el, data) {
+            for (var key in data) {
+                var option = document.createElement("option");
+                option.innerHTML = key;
+                option.value = key;
+                el.appendChild(option);
+            }
+        }
+    </script>
+</body>
+
+</html>

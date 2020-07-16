@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div class="box">
+        <span></span>
+        <span></span>
+    </div>
+    <div id="box"></div>
+
+    <script>
+        getElement("div"); //选中元素 并返回 元素对象 或者类型
+        getElement(".box");
+        getElement("#box");
+
+        /*
+            getElement of method is userd to select element and return or elements option
+
+        */
+
+        function getElement(str){
+            console.log(str.charAt(0));
+            if(str.charAt(0) ==="."){
+                return document.getElementsByClassName(str);
+            }else if(str.charAt(0) ==="#"){
+                return document.getElementById(str);
+            }else{
+                return document.getElementsByTagName(str);
+            }
+        }
+        console.log(getElement("span"));
+    </script>
+</body>
+</html>

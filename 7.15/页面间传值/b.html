@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>跳转到AAAAAAA</button>
+    <script>
+        var str = "b数据";
+        // 从a页面 到 b页面的时候，需要将a页面的数据，传到b页面中-------------》》》页面间传值
+
+        // 1、url传值
+        // 2、sessionStorage
+        // 3、localStorage
+
+        var btn = document.querySelector("button");
+        btn.onclick = function(){
+            location.href = "./a.html?str="+str;
+        }
+
+        var query = location.search;
+        console.log(query);
+        query = query.replace("?","");
+        console.log(query);
+        query = query.replace("=",":");
+        console.log(query);
+        query = `{${query}}`;
+        console.log(query);
+        query = JSON.stringify(query);
+        console.log(query);
+        query = JSON.parse(query);
+        console.log(query);
+    </script>
+</body>
+</html>

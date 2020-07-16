@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button id="show">显示</button>
+    <button id="hide">隐藏</button>
+    <script>
+        var box = document.querySelector(".box");
+        var showd = document.querySelector("#show");
+        var hided = document.querySelector("#hide");
+
+        showd.onclick = function(){
+            show(box);
+        } //  (渐隐、渐显)隐藏某一个元素
+        hided.onclick = function(){
+            hide(box);
+        } 
+        function hide(el){
+            var val = 1;
+            el.style.opacity = val;
+            var timer = setInterval(function(){
+                val -=0.1;
+                if(val <=0){
+                    el.style.opacity = 0;
+                    el.style.display = "none";
+                    clearInterval(timer);
+                    return ;
+                }
+                el.style.opacity = val;
+            },300);
+            return el;
+        }
+
+        function show(el){
+            el.style.display = "block";
+            var val = 0;
+            el.style.opacity = val;
+            var timer = setInterval(function(){
+                val +=0.1;
+                if(val >=1){
+                    el.style.opacity = 1;
+                    
+                    clearInterval(timer);
+                    return ;
+                }
+                el.style.opacity = val;
+            },300);
+            
+            return el;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- BOM：窗口对象
+    window
+    ifram 是窗口
+
+    -->
+
+    <!-- a:
+        默认行为:
+        默认事件：跳转链接  并进行  页面刷新
+        通过修改uri地址,完成链接跳转
+    -->
+    <a href="./a.html?name='丁龙飞'&age=18">嘻嘻嘻,给爷跳</a>
+
+    <button>跳</button>
+    <script>
+        
+        // url地址   很重要！！！！！！！
+
+        // 如何通过js 获取url 地址信息？
+            // ---->>location.href
+            // ---->>location.origin
+            // ---->>location.pathname
+
+            console.log(location.href); 
+        console.log(location.origin); 
+        console.log(location.pathname); 
+
+        document.querySelector("button").onclick = function(){
+            location.href = "./a.html";
+        }
+        // 重定向: 从一个地址 到另一个地址
+
+        // window是最大的对象
+        // 不能通过window 直接获取iframe 窗口中 嵌入的页面内容
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button>toggle</button>
+    <div id="box"></div>
+    <!-- 
+        1、box的显示隐藏 不确定
+        2、显示隐藏 一定是display 控制的
+     -->
+    <script>
+        //  toggle(box)  //如果box 显示 那么隐藏，如果隐藏就显示
+
+        var btn = document.querySelector("button");
+        var box = document.querySelector("#box");
+        var flag = true;
+        btn.onclick = function () {
+            // flag = !flag;
+            //  if(!flag){
+            //     box.style.display = "none";
+            //  }else{
+            //     box.style.display = "block";
+            //  }
+            toggle(box)
+        }
+
+        function toggle(el) {
+            var none = getComputedStyle(el, null)["display"];
+            if (none == "none") {
+                el.style.display = "block";
+                var val = 1;
+                el.style.opacity = val;
+                var timer = setInterval(function () {
+                    val -= 0.1;
+                    if (val <= 0) {
+                        el.style.opacity = 0;
+                        el.style.display = "none";
+                        clearInterval(timer);
+                        return;
+                    }
+                    el.style.opacity = val;
+                }, 300);
+                return el;
+            } else {
+                el.style.display = "none";
+                var val = 1;
+                el.style.opacity = val;
+                var timer = setInterval(function () {
+                    val -= 0.1;
+                    if (val <= 0) {
+                        el.style.opacity = 0;
+                        el.style.display = "none";
+                        clearInterval(timer);
+                        return;
+                    }
+                    el.style.opacity = val;
+                }, 300);
+                return el;
+            }
+        }
+    </script>
+</body>
+
+</html>

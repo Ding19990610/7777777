@@ -1,0 +1,516 @@
+/* 
+  1: 确定写什么组件样式
+  2：在写每个组件时候定义一个基础类 然后通过其他类名控制不同的样式
+  3：最后通过js 实现同台交互效果：高级：自己封装路由（你们就算了）
+
+  容器  栅格系统  表单  表格  进度条  步骤  多选框  swiper ....
+*/
+
+/* 按需清空默认样式 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.btn {
+  /* 
+    bug
+    问题:行内快 font-size 100px 看上去小实际上 很大100pz
+    */
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #909399;
+  border-color: #909399;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #f56c6c;
+  border-color: #909399;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #67c23a;
+  border-color: #67c23a;
+}
+
+.btn-warning {
+  color: #fff;
+  background-color: #e6a23c;
+  border-color: #e6a23c;
+}
+
+.btn-plain-success {
+  color: #67c23a;
+  background: #ecf5ff;
+  border-color: #c2e7b0;
+}
+
+.btn-plain-info {
+  color: #409eff;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+}
+
+.btn-plain-primary {
+  color: #909399;
+  background: #f4f4f5;
+  border-color: #d3d4d6;
+}
+
+.btn-plain-danger {
+  color: #f56c6c;
+  background: #fef0f0;
+  border-color: #fbc4c4;
+}
+
+.btn-plain-warning {
+  color: #e6a23c;
+  background: #fdf6ec;
+  border-color: #f5dab1;
+}
+
+.btn-radio {
+  border-radius: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.btn-lg {
+  font-size: 16px;
+  padding: 14px 26px;
+  border-radius: 10px;
+}
+
+.circle-check input {
+  width: 1.64rem;
+  height: 1.64rem;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+  margin: 0px 0px 0px 5px;
+  outline: none;
+  -webkit-appearance: none;
+
+  vertical-align: middle;
+}
+
+/* 当inpu type=checkbox 被选中时候的样式 */
+.circle-check input:checked {
+  background-color: #409eff;
+}
+
+/* checkbox 选中时候 在添加伪类 */
+.circle-check input:checked::after {
+  content: "";
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.square-check input {
+  width: 1.64rem;
+  height: 1.64rem;
+  border: 1px solid #ccc;
+  position: relative;
+  margin: 0px 0px 0px 5px;
+  outline: none;
+  -webkit-appearance: none;
+
+  vertical-align: middle;
+}
+
+/* 当inpu type=checkbox 被选中时候的样式 */
+.square-check input:checked {
+  background-color: #409eff;
+}
+
+/* checkbox 选中时候 在添加伪类 */
+.square-check input:checked::after {
+  content: "";
+  color: #fff;
+  display: inline-block;
+  width: .5rem;
+  height: .1rem;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 开关: 必须是input 标签 class = switch 才有效 */
+input[type=checkbox].switch {
+  outline: none;
+  -webkit-appearance: none;
+  width: 3rem;
+  height: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  background-color: #ccc;
+  padding: 0.08rem;
+  position: relative;
+}
+
+input[type=checkbox].switch::before {
+  content: '';
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  left: 0.08rem;
+  top: 0.08rem;
+  transition: all 0.5s;
+
+}
+
+input[type=checkbox].switch:checked {
+  background-color: #67c23a;
+}
+
+input[type=checkbox].switch:checked::before {
+  /* float: right; */
+  transition: all 0.5s;
+  position: absolute;
+  left: 1.5rem;
+}
+
+
+/* 状态 */
+/* 
+input 为checkbox 并且被选中 并且 class 中必为 .switch .switch-info 才有以下样式
+条件选择器 且关系
+*/
+input[type=checkbox]:checked.switch.switch-info {
+  background-color: #409eff;
+}
+
+input[type=checkbox]:checked.switch.switch-danger {
+  background-color: rgb(255, 73, 73);
+}
+
+input[type=checkbox]:checked.switch.switch-primary {
+  background-color: #409eff;
+}
+
+input[type=checkbox].switch.switch-primary {
+  background-color: rgb(255, 73, 73);
+}
+
+input[type=checkbox]:checked.switch.switch-warm {
+  background-color: hsl(51, 93%, 54%);
+}
+
+/* input 输入框  */
+
+/* 表单 */
+.form {
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfed;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+
+input .form-control {
+  outline: none;
+  border: 1px solid #d3d4d6;
+  padding: 6px 12px;
+}
+
+.has-feedback .form-control{
+  padding-right: 42px;
+}
+/* input中的字体图标 */
+.form-control-feedback{
+  position: absolute;
+}
+/* 为什么这么写 */
+input[type=text].form-control {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+input[type=password].form-control {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+
+input[type=text]:focus.form-control {
+  outline: none;
+  border-color: #409eff;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+input[type=password]:focus.form-control {
+  outline: none;
+  border-color: #409eff;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.has-feedback{
+  position: relative;
+}
+.has-feedback-suffix input[type=text].form-control{
+  padding-right: 42px;
+}
+.has-feedback-suffix input[type=password].form-control{
+  padding-right: 42px;
+}
+
+
+/* input 中的 字体图标 */
+.has-feedback-suffix .form-control-feedback{
+  position: absolute;
+  height: 100%;
+  right: 11px;
+  /* top: 50%; */
+  top: 10px;
+  /* width: 42px; */
+  font-size: 20px;
+  /* transform: translate(0%,-50%); */
+  text-align: center;
+  color: #c0c4cc;
+  transition: all .3s;
+  pointer-events: none;
+  /* line-height: none; */
+
+  /* 问题：如何保证有行高情况下 让脱离文档流元素实现 上下居中? */
+}
+
+
+
+.has-feedback-prefix input[type=text].form-control{
+  padding-left: 42px;
+}
+.has-feedback-prefix input[type=password].form-control{
+  padding-left: 42px;
+}
+
+
+/* input 中的 字体图标 */
+.has-feedback-prefix .form-control-feedback{
+  position: absolute;
+  height: 100%;
+  left: 11px;
+  /* top: 50%; */
+  top: 10px;
+  /* width: 42px; */
+  font-size: 20px;
+  /* transform: translate(0%,-50%); */
+  text-align: center;
+  color: #c0c4cc;
+  transition: all .3s;
+  pointer-events: none;
+  /* line-height: none; */
+
+  /* 问题：如何保证有行高情况下 让脱离文档流元素实现 上下居中? */
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .block {
+            width: 400px;
+            height: 200px;
+            border: 1px solid silver;
+            overflow: hidden;
+        }
+
+        .bp {
+            width: 1600px;
+            height: 200px;
+        }
+
+        .b1 {
+            width: 1600px;
+            height: 200px;
+            float: left;
+        }
+
+        .b1>img {
+            width: 400px;
+            height: 200px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="block">
+        <div class="bp">
+            <div class="b1">
+                <img src="./imgs/1.jpg" />
+                <img src="./imgs/2.jpg" />
+                <img src="./imgs/3.jpg" />
+                <img src="./imgs/4.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var block = document.getElementsByClassName("block")[0];
+        console.log(block);
+        console.log(block.scrollLeft);
+        var imgs = document.querySelectorAll("img");
+        var speed = 5;
+
+        setInterval(function () {
+            console.log(block.scrollLeft);
+            if (block.scrollLeft <= 0) {
+                block.scrollLeft =1200;
+            }
+            block.scrollLeft -= speed;
+        }, 10)
+    </script>
+</body>
+
+</html>

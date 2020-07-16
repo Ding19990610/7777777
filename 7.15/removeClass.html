@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 200px;
+            background-color: red;
+        }
+        .tangsang{
+            border-radius: 50%; 
+        }
+    </style>
+</head>
+<body>
+    <div class="box a b c d e f g"></div>
+    <script>
+        var box = document.querySelector(".box");
+        // 给元素 添加 类名
+        removeClass(box,"a");
+        removeClass(box,"b");
+        removeClass(box,"ff");
+        function removeClass(el,str){
+            // 1、判断类名是否存在
+            var classes = el.className;
+            classes = classes.split(/\s+/);
+            var res = classes.indexOf(str) !== -1 ? true:false;
+
+            if(res){
+                var newArr = classes.filter(function(item){
+                    return item !== str;
+                })
+                var newStr = newArr.join(" ");
+                el.className = newStr;
+            }else{
+                console.log("没有此类名" + str);
+            }
+            return el;
+        }
+    </script>
+</body>
+</html>
