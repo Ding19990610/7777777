@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = "美国人、日本人、韩国人";
+        // var reg1 = /人/g;
+
+        // 只要匹配到第一个满足规则的字符就不匹配了
+        // var res1 = str.replace(/人/, "狗");
+        // console.log(res1);//美国狗、日本人、韩国人
+
+        // // 匹配所有满足规则的字符
+        // var res2 = str.replace(/人/g, "狗");
+        // console.log(res2);//美国狗、日本狗、韩国狗
+
+        // 没有找到 多行匹配的应用场景
+
+        var str1 = "sdadasqwutkjeDDDDDfnzziklewlkmkamzxhi3riq";
+        var str2 = `asdasdasd
+        asdasd
+        adad`
+        // g  全局匹配， 
+        // i  忽略大小写
+        var reg2 = /[a-z]/gi;  //匹配任意字母
+        console.log(str1.match(reg2));
+        console.log(str2.match(reg2));
+    </script>
+</body>
+
+</html>

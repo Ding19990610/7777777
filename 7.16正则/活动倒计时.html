@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: red;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .time {
+            margin-top: 20px;
+            color: white;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .time span {
+            width: 100px;
+        }
+
+        .count {
+            margin-top: 20px;
+            color: white;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        span {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>京东秒杀</h1>
+        <p class="time"></p>
+        <p class="count"></p>
+    </div>
+
+    <script>
+        setInterval(function () {
+            countDown();
+        }, 1000)
+        countDown();
+        function countDown() {
+            var nowDate = new Date();
+            var futureDate = new Date("2020/07/16 21:29:00");
+            var times = parseInt((futureDate.getTime() - nowDate.getTime()) / 1000);
+            var h = parseInt(times / (60 * 60) % 24);
+            var m = parseInt(times / 60 % 60);
+            var s = parseInt(times % 60);
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            var time = document.querySelector(".time");
+            time.innerHTML = `截止到  ${futureDate.getHours()}点 ${futureDate.getMinutes()}0分的活动倒计时 `;
+            var count = document.querySelector(".count");
+            count.innerHTML = ` <span> ${h}</span> : <span> ${m}</span> : <span> ${s}</span> `;
+            if (times <= 0) {
+                time.innerHTML = "";
+                count.innerHTML = "活动已结束,敬请期待下次活动";
+                count.style.fontSize = "20px";
+                return;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

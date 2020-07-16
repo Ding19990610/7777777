@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 除了0-9 其他都匹配
+        var reg = /[^0-9]/g   ;
+        var str = "tangs123angzhe343nshig34edashad43anzi";
+        console.log(str.match(reg));
+        var reg1 = /[^a-zA-Z]/g
+        var reg2 = /[^0-9a-zA-Z]/g
+        var reg3 = /[^0-9a-zA-Z_]/g
+        var str2 = "5555555唐桑ta真是个大傻蛋子_____";
+        console.log(str2.match(reg3));
+    </script>
+</body>
+</html>

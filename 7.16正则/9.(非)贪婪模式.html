@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str1 = "1354864351354897435131687987453138765";
+        var reg1 = /\d{3,5}?/g ; //非贪婪
+        var reg2 = /\d{3,5}/g ;  //贪婪
+        console.log(str1.match(reg1));
+        console.log(str1.match(reg2));
+        
+        var reg3 = /\d+/g ;  //贪婪
+        var reg4 = /\d+?/g ;   //非贪婪
+        console.log(str1.match(reg3));
+        console.log(str1.match(reg4));
+
+        var reg5 = /\d*/g ;  //贪婪
+        console.log(str1.match(reg5));
+
+        // +   {1,}
+        // *   {0,}
+        // ?   非贪婪
+    </script>
+</body>
+</html>

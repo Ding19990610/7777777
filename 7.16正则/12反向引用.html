@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var  str = "yyyy-mm-rr";
+        // var date = 2020;
+        // var mouse = 07;
+        // var day = 16;
+        
+
+        // var  reg = /(yyyy)[-](mm)[-](rr)/g;
+        // console.log(str.match(reg));
+        // console.log(RegExp.$1);
+        // console.log(RegExp.$2);
+        // console.log(RegExp.$3);
+        // var res = str.match(reg)[0];
+        // console.log(res);
+        // 通过反向引用,获取 分组中内容
+        // 外部$1$2$3
+        // RegExp.$1:第一个分组,匹配结果
+        // RegExp.$2:第二个分组 匹配的是哪一个
+        // RegExp.$3:第三个分组匹配内容
+
+
+        // 正则表达式内部的反向引用
+        var reg = /(.)(丁龙飞)\1{4}\2/g;
+        var str = "x丁龙飞xxxx丁龙飞丁龙飞丁龙飞丁龙飞dlf";
+        console.log(str.match(reg));//x丁龙飞xxxx丁龙飞
+    </script>
+</body>
+</html>

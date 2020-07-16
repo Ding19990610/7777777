@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .times {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            margin-top: 25px;
+            margin-left: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .mh1 {
+            display: inline-block;
+            position: relative;
+            width: 10px;
+            height: 50px;
+            left: 140px;
+            line-height: 50px;
+        }
+
+        .mh2 {
+            display: inline-block;
+            position: relative;
+            width: 10px;
+            height: 50px;
+            left: 210px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span class="times"></span>
+    <div class="mh1"> : </div>
+    <span class="times"></span>
+    <div class="mh2"> : </div>
+    <span class="times"></span>
+
+    <script>
+        var date = new Date(" 2020-07-16 01:00:00");
+        console.log(date);
+        var body = document.querySelector("body");
+        // var span = document.querySelectorAll("span");
+        function formatDate(date) {
+            // 1.确定数据结构
+            var str = "hh : mm : ss";
+            // 2.获取具体的年月日时分秒,替换 结构 成字符串
+            var time = {
+                // "h+": date.getHours() >= 10 ? date.getHours() : "0" + date.getHours(),
+                // "m+": date.getMinutes() >= 10 ? date.getMinutes() : "0" + date.getMinutes(),
+                // "s+": date.getSeconds() >= 10 ? date.getSeconds() : "0" + date.getSeconds()
+                "h+": date.getHours(),
+                "m+": date.getMinutes(),
+                "s+": date.getSeconds()
+            }
+            // 3.把str字符 替换为 事件
+            // 3.1 反向引用 获取  hh mm ss   RegExp.$1
+            // 3.2 然后替换 str.replace(RegExp.$1 , time[key]);
+            for (var key in time) {
+                var reg = new RegExp(`(${key})`);
+
+                console.log(reg);
+                if (reg.test(str)) {
+                    var newValue = time[key] >= 10 ? time[key] : "0" + time[key];
+                    str = str.replace(RegExp.$1, newValue);
+                    console.log(newValue);
+                    // str = str.replace(RegExp.$1, time[key]);
+                }
+                var span = document.querySelector("span");
+                
+                    span.innerHTML = newValue;
+                    body.appendChild(span);
+                
+
+            }
+
+            console.log(str);
+            return str;
+        }
+        var res = formatDate(date);
+        console.log(res); // 16:57:57
+
+        // for(var i=0;i<span.length;i++){
+        //     console.log(span[i]);
+        // }
+
+        function djs() {
+
+        }
+    </script>
+</body>
+
+</html>

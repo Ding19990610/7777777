@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 正则对象
+        // 作用是什么？  怎么用？
+
+        // 作用: 匹配 验证  替换 字符串  仅仅对字符串有效果
+        // 用途：表单验证，替换字符，批量匹配结果
+        // 语法:     /匹配规则/修饰符号
+        
+        // var reg = new RegExp();
+        // console.log(reg);  //      /{?:}/
+        var reg = new RegExp("狗");
+        var str = "美国人、日本人、韩国人";
+        var reg1 = /人/g;
+
+        var res = str.match(reg1);
+        console.log(res);
+        var res1 = str.replace(/[人]/g,"狗");
+        console.log(res1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1: 以数字字母开头 匹配结果字符长度为8为
+        var reg = /^[0-9a-zA-z].{7}$/g
+        var str = "1aA!_(@]";
+        console.log(str.match(reg));
+        // 2： 匹配一个数字字符字符长度为18为
+        var reg1 = /\d{18}$/g
+        var str1 = "111122223333444455";
+        console.log(str1.match(reg1));
+        //     3: 手机号码正则
+        var reg2 = /^1[3|4|5|7|8|9]\d{9}$/g
+        var str2 = "15995097635";
+        console.log(reg2.test(str2));
+        //     4: 邮箱的验证码
+        var reg3 = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        var str3 = "dlf1045339611@qq.com";
+        console.log(reg3.test(str3));
+        //     5： 写一个 8 - 12 的密码验证。
+        var reg4 = /^\w{8,12}$/
+        var str4 = "13246851235";
+        console.log(reg4.test(str4));
+        //     6： http开头 中间为任意字符， 长度不限， 结尾必须是.com.cn
+        var reg5 = /^[http].+\.[com|cn]$/
+        var str5 = "http:123.com";
+        console.log(reg5.test(str5));
+
+        var reg7 = /^(http)|(https):\/\/[a-zA-Z]{0,3}\.[0-9a-zA-Z]+\.(com)|(cn)$/g;
+        var str7 = "http://www.baidu.com";
+        var str8 = "https://www.qq.com";
+        console.log(reg7.test(str7));
+        console.log(reg7.test(str8));
+
+    </script>
+</body>
+
+</html>

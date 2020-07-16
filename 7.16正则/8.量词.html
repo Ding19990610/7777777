@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //    . 任意字符   \.点 
+        var reg = /.{3}$/g; //验证长度为3的任意字符
+        var str = "唐桑强呀,打的好";
+        console.log(str.match(reg));
+
+        // 只能为数字,不限制长度
+        var reg1 = /^[0-9]{1,}$/
+        var str1 = "asd2k31l23am";
+        console.log(str1.match(reg1));
+
+
+        // 表单验证:
+        // 验证某个字符 是否符合正则:
+        var str2 = "1231313";
+        // exec():---检索字符串中的指定值,返回值是被找到的值,如果没有发现匹配,则返回null
+        console.log(reg1.exec(str2));
+        // test():---验证某一个字符是否符合,正则表达式:返回true  false
+        console.log(reg1.test(str2));
+
+        // 匹配 首部 尾部为空格
+        // var  reg1 = /^\s{1,}|\s{1,}$/  //   或
+        var  reg1 = /^\s{1,}|\s{1,}$/g //   和
+        var  str3 = "   dddf    sadas   ";
+        console.log(str3.replace(reg1,""));
+        console.log(str3);
+
+        // 去除所有的空格
+        var reg2 = /\s{1,}/g;
+        console.log(str3.replace(reg2,""));
+    </script>
+
+</body>
+
+</html>
