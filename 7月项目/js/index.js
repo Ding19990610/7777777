@@ -18,3 +18,4 @@ function setRem() {
     }  
     docEl.style.fontSize = 10 * (clientWidth / 1080) + 'px';  
 } 
+

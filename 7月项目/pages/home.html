@@ -5,89 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/query.css">
     <link rel="stylesheet" href="../css/home.css">
+    
 </head>
 
 <body>
-    <div id="body">
-        <header>
-            <img src="../imgs/scanning.png" alt="">
-            <input type="text">
-            <div>
-                <img src="../imgs/search.png" alt="">
-            </div>
-            <img src="../imgs/rili.png" alt="">
-        </header>
-        <div class="banner">
-            <div id="lbt">
-                <ul class="lunbo">
-                    <a><img src="../imgs/banner1.png" alt="" class="lb"></a>
-                    <a><img src="../imgs/banner2.png" alt="" class="lb"></a>
-                    <a><img src="../imgs/banner3.png" alt="" class="lb"></a>
-                    <a><img src="../imgs/banner4.png" alt="" class="lb"></a>
-                </ul>
-            </div>
-            <div class="box">
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <div class="ball"></div>
-            </div>
-        </div>
-        <div class="modulars">
-            <div class="modular-items">
-                <img src="../imgs/modular1.png" alt="">
-                <span>模块一</span>
-            </div>
-            <div class="modular-items">
-                <img src="../imgs/modular2.png" alt="">
-                <span>模块二</span>
-            </div>
-            <div class="modular-items">
-                <img src="../imgs/modular3.png" alt="">
-                <span>模块三</span>
-            </div>
-            <div class="modular-items">
-                <img src="../imgs/modular4.png" alt="">
-                <span>模块四</span>
-            </div>
-        </div>
-        <main>
-            <div class="main-item1">
-                <h2 class="item-title">栏目</h2>
-                <div class="lessons">
-                    <div class="lesson1">
-
-                    </div>
-                    <div class="lesson2">
-                        
-                    </div>
-                </div>
-            </div>
-        </main>
+    <nav>
+        <ul>
+            <li>咖啡</li>
+            <li>饮食</li>
+            <li>正餐</li>
+            <li>男装</li>
+            <li>女装</li>
+            <li>眼镜</li>
+            <li>鞋靴</li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <img src="../imgs/a.jpg" alt="">
+        <img src="../imgs/b.jpg" alt="">
+        <img src="../imgs/c.jpg" alt="">
+        <img src="../imgs/d.jpg" alt="">
+        <img src="../imgs/e.jpg" alt="">
     </div>
-    
-    <script>
-        var imgs = document.querySelectorAll(".lb");
-        var ball = document.querySelectorAll(".ball");
-        imgs[0].style.display = "block";
-        ball[0].style.backgroundColor = "#fff";
-        var index = 0;
-    
-        function zd() {
-            index++;
-            for (var i = 0; i < imgs.length; i++) {
-                imgs[i].style.display = "none";
-                ball[i].style.backgroundColor = "";
-            }
-            if (index > 3) {
-                index = 0;
-            }
-            imgs[index].style.display = "block";
-            ball[index].style.backgroundColor = "#fff";
-        }
-        setInterval(zd, 1000)
-    </script>
+    <script src="../js/home.js"></script>
 </body>
 
 </html>

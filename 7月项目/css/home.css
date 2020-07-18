@@ -1,148 +1,45 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     list-style: none;
-    text-decoration: none;
-}
-html{
-    width: 100%;
-    font-size: 100px;
+    box-sizing: border-box;
 }
 body{
     width: 100%;
-    font-size: 16px;
-}
-#body{
-    width: 100%;
-    box-sizing: border-box;
-}
-header{
-    width: 100%;
-    height: 0.5rem;
-    display: flex;
-    position: fixed;
-    justify-content: space-around;
-    background-color: #7fa3f5;
-    
-}
-header img{
-    display: block;
-    width: 0.2rem;
-    height: 0.2rem;
-    line-height: 0.5rem;
-    margin-top: 0.15rem;
-    vertical-align: middle;
-}
-header input{
-    height: 0.3rem;
-    width: 80%;
-    line-height: 0.5rem;
-    margin-top: 0.1rem;
-    border-radius: 0.15rem;
-    vertical-align: middle;
-    background-color: #b1c5f3;
-    border: 0;
-}
-header div{
-    position: absolute;
-    left: 15%;
-    top:0.05rem;
-}
-header div img{
-    width: 0.15rem;
-    height: 0.15rem;
-    line-height: 0.3rem;
-    margin-top: 0.12rem;
-}
-/* 轮播图 */
-.banner{
-    width: 100%;
-    height: 2rem;
-    padding-top: 0.5rem;
-    margin-left:0.5%;
-}
-#lbt{
-    width: 100%;
-    height:2rem;
-}
-.lunbo{
-    width: 100%;
-    height: 2rem;
-}
-.lunbo>a{
-    width: 100%;
-}
-.lunbo>a>img{
-    width: 100%;
     height: 100%;
+}
+nav{
+    margin-top: 20px;
+    width: 70%;
+    margin-left: 15%;
+}
+nav>ul{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+nav>ul>li{
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.banner{
+    width: 70%;
+    margin-left: 15%;
+    height: 320px;
+    margin-top: 20px;
+    position: absolute;
+}
+.banner img{
+    width: 100%;
+    height: 370px;
+    border-radius: 20px;
+    position: absolute;
     display: none;
 }
-.box{
-    display: flex;
-    justify-content:space-around;
-    width: 20%;
-    height: 10px;
-    margin-left: 40%;
-    position: absolute;
-    top:2.2rem;
+.show{
+    display: block !important;
 }
-.ball{
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #ccc;
-}
-.modulars{
-    width: 100%;
-    padding: 0.1rem;
-    height: 1rem;
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: space-around;
-}
-.modular-items img{
-    display: block;
-    margin: 0.1rem;
-}
-.modular-items span{
-    display: block;
-    text-align: center;
-}
-/* 栏目 */
-main{
-    width: 100%;
-    padding: 5%;
-}
-.main-item1{
-    width: 100%;
-    height: auto;
-    overflow: auto;
-}
-.main-item1 h2{
-    font-size: 0.24rem;
-}
-.main-item1 .item-title{
-    width: 100%;
-}
-.main-item1 .lessons{
-    width: 160%;
-    float: left;
-    padding: 10px;
-}
-.main-item1 .lessons .lesson1{
-    width: 40%;
-    float: left;
-    height: 120px;
-    box-shadow: #666 0px 0px 5px;
-    border-top-left-radius: 8%;
-    border-bottom-right-radius: 8%;
-}
-.main-item1 .lessons .lesson2{
-    width: 30%;
-    float: left;
-    height: 120px;
-    box-shadow: #666 0px 0px 5px;
-    border-top-left-radius: 8%;
-    border-bottom-right-radius: 8%;
-}
+

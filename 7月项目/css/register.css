@@ -1,6 +1,7 @@
 body{
     width: 100%;
     height: 100%;
+   
 }
 form{
     width: 30%;
@@ -30,6 +31,7 @@ form #login{
     border: 1px solid #ccc;
     background-color: #67c23a;
     color:#fff;
+    position: relative;
 }
 ::-webkit-input-placeholder{
     color:#ccc;
