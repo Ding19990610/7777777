@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            width: 500px;
+            margin: 10px auto;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+        }
+
+        /* .left{
+            width: 200px;
+            height: 200px;
+        } */
+        .left img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .right {
+            margin-left: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一个服务器  多个服务    每个服务   多个接口 -->
+    <ul id="list">
+        <!-- <li>
+            <div class="left">
+                <img src="https://p1.music.126.net/_d1scu7z_1dmd0Zgv9mTLA==/19165587183900212.jpg" alt="">
+            </div>
+            <div class="right">
+                <span>陈奕迅</span>
+            </div>
+        </li> -->
+    </ul>
+    <script>
+        var list = document.querySelector("#list");
+        var url = "http://192.168.1.121:3000";
+        var temp = "";
+        ajax("GET", url, function (data) {
+            // console.log(data, "------");
+            var data = JSON.parse(data);
+            console.log(data);
+            if (data.code == 200) {
+                var {
+                    artists
+                } = data;
+                for (var i = 0; i < artists.length; i++) {
+                    temp += `<li>
+            <div class="left">
+                <img src="${artists[i].img1v1Url}" alt="">
+            </div>
+            <div class="right">
+                <span>${artists[i].name}</span>
+            </div>
+        </li> `
+                }
+                list.innerHTML = temp;
+            }
+        });
+        // console.log(data);
+        function ajax(method, url, callback) {
+            var res = {};
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url)
+            xhr.send();
+            // 异步,后执行
+
+            xhr.onreadystatechange = function () {
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    // 请求成功
+                    res = xhr.response;
+                    callback(res);
+                } else {
+                    res = {
+                        error: "请求失败!!!"
+                    }
+                    callback(res);
+                }
+            }
+            // 先执行
+            // return res : 这里的return  先return再赋值
+        }
+    </script>
+</body>
+
+</html>

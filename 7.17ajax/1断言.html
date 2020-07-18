@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          var str = "a eatox regular expu";
+        //   regular of e
+        // 断言，是匹配字符的条件判断，不会匹配具体字符
+
+        var reg = /e/g;  //所有的e
+        var reg1 = /e(?=gular)/g;  //所有的e
+        console.log(str.match(reg));
+        console.log(reg1.exec(str));
+        console.log(str.replace(reg1,55));
+
+        // 正则表达式 匹配方式  从左往右
+        // 前瞻:匹配字符的时候，需要往右看看【正向匹配】是否满足 某个条件
+        //                        往右看看【负向匹配】是否满足 某个条件
+
+        // 字符串： 尾部叫前，头部叫后
+        
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{{msg}}</h1>
+    <div>{{div}}</div>
+    <span>{{age}}</span>
+</body>
+
+</html>
+<script>
+    var data = {
+        msg: "唐桑：",
+        div: "一万个丁桑比不上一个唐桑",
+        age: 30
+    }
+    var h1 = document.querySelector("h1");
+    var div = document.querySelector("div");
+    var span = document.querySelector("span");
+
+    // 方式1：
+    // var h1Val = h1.innerHTML;
+    // var divVal = div.innerHTML;
+
+    // h1.innerHTML = h1Val.replace(/\{\{(\w+)\}\}/, function (a, b, c) {
+    //     console.log(a, b, c);
+    //     return data[RegExp.$1];
+    // })
+    // div.innerHTML = divVal.replace(/\{\{(\w+)\}\}/, function (a, b, c) {
+    //     console.log(a, b, c);
+    //     return data[RegExp.$1];
+    // })
+
+
+    // 方式2
+    // function replaceVal(el) {
+    //     var str = el.innerHTML;
+    //     el.innerHTML = str.replace(/\{\{(\w+)\}\}/, function (a, b, c) {
+    //         console.log(a, b, c);
+    //         for (var key in data) {
+    //             if (key === RegExp.$1) {
+    //                 return data[key];
+    //             }
+    //         }
+
+    //     })
+    // }
+    // replaceVal(h1)
+    // replaceVal(div)
+
+    // 方式3：
+    function replaceValue(data) {
+        var temp = document.body.innerHTML;
+        console.log(temp);
+        var res = temp.replace(/\{\{(\w+)\}\}/g, function (a, b, c) {
+            console.log(a, b, c);
+            var reg = /\w+/;
+            var newVal = a.match(reg)[0];
+            console.log(a.match(reg)[0]);
+            for (var key in data) {
+                if (key === newVal) {
+                    return data[key];
+                }
+            }
+        });
+        document.body.innerHTML = res;
+    }
+    replaceValue(data);
+</script>

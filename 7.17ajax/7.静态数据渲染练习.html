@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            width: 500px;
+            margin: 10px auto;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+        }
+
+        /* .left{
+            width: 200px;
+            height: 200px;
+        } */
+        .left img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .right {
+            margin-left: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="list">
+        <!-- <li>
+            <div class="left">
+                <img src="https://p1.music.126.net/_d1scu7z_1dmd0Zgv9mTLA==/19165587183900212.jpg" alt="">
+            </div>
+            <div class="right">
+                <span>陈奕迅</span>
+            </div>
+        </li> -->
+    </ul>
+    <script>
+        var data = {
+            code: 200,
+            more: true,
+            artists: [{
+                albumSize: 105,
+                alias: ["Eason Chan"],
+                briefDesc: "",
+                followed: false,
+                id: 2116,
+                img1v1Id: 19165587183900212,
+                img1v1Id_str: "19165587183900212",
+                img1v1Url: "https://p1.music.126.net/_d1scu7z_1dmd0Zgv9mTLA==/19165587183900212.jpg",
+                musicSize: 1802,
+                name: "陈奕迅",
+                picId: 18641120139241412,
+                picId_str: "18641120139241412",
+                picUrl: "https://p1.music.126.net/nILBk4DaE3yV__25uq-5GQ==/18641120139241412.jpg",
+                topicPerson: 0,
+                trans: ""
+            }, {
+                albumSize: 105,
+                alias: ["Eason Chan"],
+                briefDesc: "",
+                followed: false,
+                id: 2116,
+                img1v1Id: 19165587183900212,
+                img1v1Id_str: "19165587183900212",
+                img1v1Url: "https://p1.music.126.net/_d1scu7z_1dmd0Zgv9mTLA==/19165587183900212.jpg",
+                musicSize: 1802,
+                name: "唐桑",
+                picId: 18641120139241412,
+                picId_str: "18641120139241412",
+                picUrl: "https://p1.music.126.net/nILBk4DaE3yV__25uq-5GQ==/18641120139241412.jpg",
+                topicPerson: 0,
+                trans: ""
+            }]
+        };
+        var list = document.querySelector("#list");
+        // var temp = "";
+        window.onload = function () {
+            // var artList = data.artists;
+            var {
+                artists,
+                code,
+                more
+            } = data; //es6,声明多个变量
+            if (code == 200) {
+                for (var i = 0; i < artists.length; i++) {
+                    console.log(artists[i]);
+                    var {
+                        img1v1Url,
+                        name
+                    } = artists[i];
+                    console.log(img1v1Url, name);
+                    // temp += ` //<li>
+                    var temp = ` <li>
+                        <div class="left">
+                            <img src="${img1v1Url}" alt="">
+                        </div>
+                        <div class="right">
+                            <span>${name}</span>
+                        </div>
+                        </li> `;
+
+                    console.log(temp);
+                    //把temp变成dom对象
+                    var doc = new DOMParser().parseFromString(temp, "text/html");
+                    list.appendChild(doc.body.childNodes[0])
+                }
+                // list.innerHTML = temp;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

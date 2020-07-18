@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = "美国人日本人韩国人";
+        var reg = /["人"]/g;
+        var count = 0;
+        var res = str.replace(reg,function(a,b,c){
+            console.log(a,b,c);
+            // para1：正则匹配的结果
+            // para2：匹配字符的索引
+            // para3：str
+            return "dog"+(++count);
+        })
+        console.log(res);
+    </script>
+    
+</body>
+</html>

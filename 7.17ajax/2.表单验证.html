@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding: 10px;
+            box-shadow: 0 0 5px red, 0 0 15px blue;
+        }
+
+        label {
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+        }
+
+        div {
+            margin-top: 40px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        span {
+            display: block;
+            margin-top: 10px;
+            margin-left: 90px;
+            font-size: 12px;
+        }
+
+        #login {
+            display: block;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            margin-left: calc(25% - 50px);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <label for="">用户名:</label>
+            <input type="text" name="username" id="username" value="name">
+            <span>请输入6-12位的数字或字母</span>
+        </div>
+        <div>
+            <label for="">密 码:</label>
+            <input type="text" name="password" id="password" value="password">
+            <span>请输入8-12位的开头为大写字母的数字字母下划线</span>
+        </div>
+        <input type="submit" name="" id="login" value="登录">
+    </form>
+    <script>
+        var username = document.querySelector("#username");
+        var password = document.querySelector("#password");
+        var login = document.querySelector("#login");
+        var span1 = document.querySelectorAll("span")[0];
+        var span2 = document.querySelectorAll("span")[1];
+        login.onclick = function (e) {
+            e.preventDefault(); //阻止表单  submit的默认行为
+            var uname = username.value;
+            var pwd = password.value;
+            // console.log(uname,pwd);
+            // 贪婪匹配，不用顾虑长度问题
+            var regName = /^[0-9a-zA-z]{6,16}$/;
+            var regPwd = /^[A-Z]\w{7,11}$/;
+
+            // console.log(regName.exec(uname));
+            // console.log(regPwd.exec(pwd));
+
+            if (!regName.test(uname)) {
+                span1.innerHTML = "请确认输入的内容(6-12位的数字或字母)"
+                span1.style.color = "red";
+            } else {
+                span1.innerHTML = "用户名格式正确"
+                span1.style.color = "black";
+            }
+
+
+            if (!regPwd.test(pwd)) {
+                span2.innerHTML = "请确认输入的内容(开头为大写字母且密码长度为8-16)"
+                span2.style.color = "red";
+            } else {
+                span2.innerHTML = "密码格式正确"
+                span2.style.color = "black";
+            }
+
+            if (regName.test(uname) && regPwd.test(pwd)) {
+                span1.innerHTML = "";
+                span2.innerHTML = "";
+                console.log("登录成功");
+            }
+        }
+    </script>
+</body>
+
+</html>
