@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">我是被替换的</div>
+
+        <p>我是用来被删除的</p>
+    </div>
+    <script>
+        // 替换
+        // replaceWith
+        $(".box").replaceWith("<h1>我是被替换来的新元素</h1>")
+
+        // 删除
+        // empty ：删除所有子元素  
+        $(".wrap").empty()
+        // 可用于 清空 所有标签
+
+        // remove ：删除选中元素(所有匹配到的元素)
+        $("p").remove()
+    </script>
+</body>
+
+</html>

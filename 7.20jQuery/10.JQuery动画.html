@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>滑动事件</button>
+    <div class="box"></div>
+    <script>
+        $(".box").css({
+            width: "100px",
+            height: "100px",
+            backgroundColor: "red"
+        })
+        // 滑动效果
+        // $("button").on("click", function () {
+        //     console.log("jQuery的事件绑定");
+        //     $(".box").slideToggle(500);
+        // })
+        // $("button").on("click", function () {
+        //     this.innerHTML = "滑动事件";
+        //     console.log("上滑事件");
+        //     $(".box").slideUp(500,function () {
+        //     console.log("下滑事件");
+        //     $(".box").slideDown(500);
+        // });
+        // })
+
+        // 淡入淡出
+        // $("button").on("click", function () {
+        //     console.log("jQuery的事件绑定");
+        //     $(".box").fadeToggle(500);
+        // })
+        $("button").on("click", function () {
+            this.innerHTML = "淡入淡出";
+            console.log("淡出事件");
+            $(".box").fadeOut(1000,function () {
+            console.log("淡入事件");
+            $(".box").fadeIn(1000);
+        });
+        })
+    </script>
+</body>
+
+</html>

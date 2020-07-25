@@ -7,10 +7,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/query.css">
     <link rel="stylesheet" href="css/index.css">
+
     <link rel="stylesheet" href="assetes/font/iconfont.css">
+    <script src="./js/jquery.js"></script>
 </head>
 
 <body>
+    <div class="Car">
+        <img src="./imgs/loading.jpg" alt="">
+    </div>
+   
     <header>
         <img src="imgs/logo.png" alt="">
         <div class="search">
@@ -20,18 +26,27 @@
         <nav>
             <ul>
                 <li>
-                    <a href="pages/home.html" target="content">首页</a>
+                    <a href="pages/home.html" target="content" id="home"  class="navLists">首页</a>
                 </li>
                 <li>
-                    <a href="pages/login.html" target="content">登录</a>
+                    <a href="pages/login.html" target="content" id="dl"  class="navLists">登录</a>
                 </li>
                 <li>
-                    <a href="pages/register.html" target="content">注册</a>
+                    <a href="pages/register.html" target="content" id="register"  class="navLists">注册</a>
+                </li>
+                <li>
+                    <a href="pages/shopCar.html" target="content" id="shopCar"  class="navLists">购物车</a>
+                </li>
+                <li >
+                    <a href="pages/home.html" target="content" id="exit"  class="navLists">退出登录</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <iframe src="" frameborder="0" name="content"></iframe>
+    <iframe src="./pages/home.html" id="ifrm" frameborder="0" name="content"></iframe>
+
+
 </body>
 
 </html>
+<script src="./js/index.js"></script>

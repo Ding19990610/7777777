@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <button>点击</button>
+    <iframe src="./a.html" frameborder="0" id="ifrm"></iframe>
+    <script>
+        // iframe contentWindow
+
+        // 父窗口 子窗口
+
+        // 2、如何把子窗口的数据 传递给父窗口 (子传父)
+        // 如何将父窗口的数据 传递给子窗口    (父传子)
+
+
+        // 1、如何在父窗口 获取子窗口页面的 dom  元素
+
+        // 点击按钮 获取a.html 中的p标签
+        $("button").on("click", function () {
+            // 获取ifrm的窗口对象
+            var res = $("#ifrm")[0].contentWindow;
+            // 获取dom对象
+            var p = res.document.querySelector("p");
+            console.log(res);
+            console.log(p);
+            console.log($(p).css({
+                color: "red"
+            }));
+        })
+
+
+    </script>
+</body>
+
+</html>

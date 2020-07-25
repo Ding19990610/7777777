@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #ccc;
+        }
+        .glass {
+            width: 470px;
+            position: relative;
+            left: 30%;
+            top: 40%;
+            transform: translate(-50% -50%);
+        }
+
+        .bigImages {
+            width: 470px;
+            height: 270px;
+        }
+
+        .bigImages img {
+            display: none;
+            width: 470px;
+            height: 270px;
+        }
+
+        /* .active{
+            display: block !important;
+        } */
+        .glassView {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            right: -240px;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .glassView img {
+            width: 940px;
+            height: 540px;
+            display: none;
+            position: relative;
+        }
+
+        .smImages {
+            width: 470px;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+
+        .smImages img {
+            display: inline-block;
+            width: 150px;
+            height: 90px;
+            opacity: 0.4;
+        }
+
+        .mark {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            opacity: 0.5;
+            left: 0;
+            top: 0;
+            position: absolute;
+            /* display: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass">
+        <!-- 放大镜图片 -->
+        <div class="glassView">
+            <img src="./images/1.jpg" alt="">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+        </div>
+        <!-- 大图 -->
+        <div class="bigImages">
+            <img src="./images/1.jpg" alt="" class="active">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+            <!-- 放大镜标记 -->
+            <div class="mark"></div>
+        </div>
+        <!-- 缩略图 -->
+        <div class="smImages">
+            <img src="./images/1.jpg" alt="">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        // 第一步  css初始化样式  全部为  不选中 状态
+
+        // 处理浏览器加载的样式 在css的基础上
+        $(window).ready(function () {
+            var index = 0;
+
+            $(`.bigImages>img:eq(${index})`).css({
+                display: "block"
+            })
+            $(`.smImages>img:eq(${index})`).css({
+                opacity: "1"
+            })
+
+            $(".mark").css({
+                display: "none"
+            })
+
+
+            // 第一个功能，tab切换
+            $(".smImages").on("mouseover", "img", function () {
+                $(`.bigImages>img:eq(${index})`).css({
+                    display: "none"
+                })
+                $(`.smImages>img:eq(${index})`).css({
+                    opacity: "0.4"
+                })
+                $(`.glassView>img:eq(${index})`).css({
+                    display: "none"
+                })
+                console.log(index);
+                index = $(this).index();
+                console.log(index);
+                $(`.bigImages>img:eq(${index})`).css({
+                    display: "block"
+                })
+                $(`.smImages>img:eq(${index})`).css({
+                    opacity: "1"
+                })
+            })
+            // 第二个功能: 显隐
+            // 鼠标移入bigImages，mark显示，移出   mark隐藏
+            $(".bigImages").on("mouseover", function () {
+
+                $(".mark").css({
+                    display: "block"
+                });
+                $(`.glassView>img:eq(${index})`).css({
+                    display: "block"
+                });
+
+                // 第三个功能:  拖拽
+                $(".bigImages").on("mousemove", function (e) {
+                    // 获取 鼠标 位置
+                    var pageX = e.pageX;
+                    var pageY = e.pageY;
+                    // 获取 大图  在整个文档中的偏移位置
+                    var offsetX = $(this).offset().left;
+                    var offsetY = $(this).offset().top;
+                    // 计算   鼠标    在   大图   中的相对位置
+                    var relativeX = pageX - offsetX;
+                    var relativeY = pageY - offsetY;
+                    // 把鼠标 放在  mark层的正中间
+                    var moveX = relativeX - $(".mark").width() / 2;
+                    var moveY = relativeY - $(".mark").height() / 2;
+
+                    moveX < 0 ? moveX = 0 : moveX;
+                    moveY < 0 ? moveY = 0 : moveY;
+                    var maxX = $(this).width() - $(".mark").width();
+                    moveX > maxX ? moveX = maxX : moveX;
+                    var maxY = $(this).height() - $(".mark").height();
+                    moveY > maxY ? moveY = maxY : moveY;
+
+                    $(".mark").css({
+                        left: moveX + "px",
+                        top: moveY + "px"
+                    });
+                    // 第四个功能  放大镜
+                    $(`.glassView>img:eq(${index})`).css({
+                        left:-(2 * moveX)  + 'px',
+                        top: -(2 * moveY) + 'px'
+                    });
+                })
+            });
+            $(".bigImages").on("mouseleave", function () {
+                $(".mark").css({
+                    display: "none"
+                });
+                $(`.glassView>img:eq(${index})`).css({
+                    display: "none"
+                });
+            })
+
+
+
+        })
+    </script>
+</body>
+
+</html>

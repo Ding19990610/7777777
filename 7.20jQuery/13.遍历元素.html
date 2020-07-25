@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+        <p>段落文字</p>
+        <ul>
+            <li>内容001</li>
+            <li>内容002</li>
+            <li>内容003</li>
+            <span>xxxx</span>
+            <span>xxxx</span>
+
+            <span>xxxx</span>
+
+            <span>xxxx</span>
+
+
+        </ul>
+    </div>
+
+    <main id="ts ds"></main>
+    <script>
+        var names1 = document.querySelector("ts ds");
+        var names2 = document.querySelector("ts #ds");
+        var names3 = document.querySelector("#ts ds");
+        var names4 = document.querySelector("#ts #ds");
+        var names5 = document.getElementById("ts");
+        var names6 = document.getElementById("ds");
+        var names7 = document.querySelector("#dingsang");
+        var names8 = document.querySelector("#tangsang");
+        console.log(names1,names2,names3,names4,names5,names6,names7,names8);
+        // 如何通过 当前元素 查找相关元素
+
+        // 父元素、子元素、兄弟元素、 第几个元素
+
+        // var lists = $("ul").children(); //返回 子元素  集合
+        // console.log(lists);
+        // var parent = $("ul").parent(); //返回  父元素
+        // console.log(parent);
+        // var parents = $("li").parents(); //返回  父元素【的父元素】的集合
+        // console.log(parents);
+
+        // // find() 查找某元素
+        // var span = $("ul").find("span");
+
+        // // 找到第二个span
+        // // jquery.eq(index) 选中 第几个元素  index：索引值
+        // var two = span.eq(1);
+        // $("li>span:eq(1)").css({
+        //     color:"red"
+        // })
+        
+    </script>
+</body>
+</html>

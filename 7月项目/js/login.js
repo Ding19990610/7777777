@@ -1,40 +1,111 @@
+var parentWindow = window.parent;
+var regName = /^[0-9a-zA-z]{6,16}$/;
+var regPwd = /^[A-Z]\w{7,11}$/;
+$('#username').on("blur", function () {
+    if (!regName.test($('#username').val())) {
+        $('.tips:eq(0)').html("请确认输入的内容(6-16位的数字或字母)");
+        $('.tips:eq(0)').css({
+            color: "red"
+        });
+        $('.tips:eq(0)').css({
+            opacity: 1
+        });
+        $('.tips:eq(1)').css({
+            opacity: 0
+        });
+    } else {
+        $('.tips:eq(0)').css({
+            opacity: 0
+        });
+        $('.tips:eq(1)').css({
+            opacity: 1
+        });
+    };
+})
+$('#password').on("blur", function () {
+    if (!regPwd.test($('#password').val())) {
+        $('.tips:eq(1)').html("请确认输入的内容(开头为大写字母且密码长度为8-12)");
+        $('.tips:eq(1)').css({
+            color: "red"
+        });
+    } else {
+        $('.tips:eq(1)').css({
+            opacity: 0
+        });
+    }
+})
 
-        var username = document.querySelector("#username");
-        var password = document.querySelector("#password");
-        var login = document.querySelector("#login");
-        var span1 = document.querySelectorAll("span")[0];
-        var span2 = document.querySelectorAll("span")[1];
-        login.onclick = function (e) {
-            e.preventDefault(); //阻止表单  submit的默认行为
-            var uname = username.value;
-            var pwd = password.value;
-            // console.log(uname,pwd);
-            // 贪婪匹配，不用顾虑长度问题
-            var regName = /^[0-9a-zA-z]{6,16}$/;
-            var regPwd = /^[A-Z]\w{7,11}$/;
-
-            // console.log(regName.exec(uname));
-            // console.log(regPwd.exec(pwd));
-
-            if (!regName.test(uname)) {
-                span1.innerHTML = "请确认输入的内容(6-12位的数字或字母)"
-                span1.style.color = "red";
-            } else {
-                span1.innerHTML = "用户名格式正确"
-                span1.style.color = "black";
+var parentWindow = window.parent;
+$('#login').click(function (e) {
+    e.preventDefault();
+   
+    if ((regName.test($('#username').val())) && (regPwd.test($('#password').val()))) {
+        $.ajax({
+            url: "http://vebcoder.cn:9527/api/login",
+            async: true,
+            data: {
+                username: $('#username').val(),
+                password: $('#password').val()
+            },
+            type: "get",
+            success: function (data) {
+                console.log(data);
+                $(".Car").show().delay(500).fadeOut(300);
+                if (data.token != null) {
+                    console.log("登录成功");
+                    // $(window).showDialog("success","登录").hideDialog();
+                    // location.href  = "../pages/home.html"
+                    // localStorage.setItem("token",data.token);
+                }
+                if (data.code == 0) {
+                    console.log("登录失败");
+                    $(window).showDialog("success","登录成功").hideDialog("success",200);
+                    var obj = {
+                        code:1,
+                        token:"tangsangzhenshigedashadiao"
+                    }
+                    for(var k in obj){
+                        localStorage.setItem(k,obj[k])
+                    }
+                    console.log(localStorage);
+                    localStorage.getItem("token");
+                   
+                    
+                parentWindow.$("#register").css({
+                    display: "none"
+                });
+                parentWindow.$("#dl").css({
+                    display: "none"
+                });
+                parentWindow.$("#shopCar").css({
+                    display: "block"
+                });
+                parentWindow.$("#exit").css({
+                    display: "block"
+                });
+                parentWindow.$("#home").css({
+                    borderBottom: "2px solid #c269b3"
+                });
+                parentWindow.$("#home").css({
+                    color: "red"
+                })
+                parentWindow.$("#dl").css({
+                    borderBottom: "none"
+                });
+                parentWindow.$("#dl").css({
+                    color: "black"
+                })
+                parentWindow.$(".Car").show().delay(1000).fadeOut(300);
+                // parentWindow.$.("success","登录成功!!");
+                 location.href  = "../pages/home.html"
+                }
+            },
+            error: function (err) {
+                console.log(err, "error!!!");
             }
+        });
+
+    }
 
 
-            if (!regPwd.test(pwd)) {
-                span2.innerHTML = "请确认输入的内容(开头为大写字母且密码长度为8-16)"
-                span2.style.color = "red";
-            } else {
-                span2.innerHTML = "密码格式正确"
-                span2.style.color = "black";
-            }
-            if (regName.test(uname) && regPwd.test(pwd)) {
-                span1.innerHTML = "";
-                span2.innerHTML = "";
-                console.log("登录成功");
-            }
-        }
+})

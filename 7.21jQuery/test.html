@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无缝切换轮播图</title>
+    <style>
+        *{margin: 0;padding: 0;}
+li{list-style-type: none;}
+.slide{
+    width: 640px;
+    height: 400px;
+    margin: 100px auto 0 auto;
+    border: 5px solid #CCC;
+    position: relative;
+    overflow: hidden;
+}
+/* 导航点 */
+.slide .slide-nav{
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    right: 10px;
+}
+.slide .slide-nav>li{
+    width: 10px;
+    height: 10px;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    float: left;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.slide .slide-nav>li.active{
+    background-color: #FFF;
+    border-color: #FFF;
+}
+/* #导航点 */
+/* 轮播内容 */
+.slide .slide-content{
+    position: relative;
+    z-index: 1;
+    top: 0;
+    width: 99999px;
+    height: 400px;
+}
+.slide .slide-content .slide-item{
+    float: left;
+    width: 640px;
+    height: 400px;
+}
+.slide .slide-content .slide-item>img{
+    width: 100%;
+    height: 100%;
+}
+/* #轮播内容 */
+/* 按钮 */
+.slide .slide-btn{
+    display: block;
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    z-index: 2;
+}
+.slide .prev{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background:url(../img/pre.png) no-repeat center center;
+}
+.slide .next{
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background:url(../img/next.png) no-repeat center center;
+}
+.slide a:hover{
+    background-color: rgba(0,0,0,0.5);
+}
+/* #按钮 */
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+        <!-- 导航点 -->
+         <ul class="slide-nav">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+         </ul>
+         <!-- /导航点 -->
+         <!-- 轮播图 -->
+         <div class="slide-content">
+            <div class="slide-item">
+                <img src="../7月项目/imgs/a.jpg" alt="图片一">
+            </div>
+            <div class="slide-item">
+                <img src="../7月项目/imgs/b.jpg" alt="图片二">
+            </div>
+            <div class="slide-item">
+                <img src="../7月项目/imgs/c.jpg" alt="图片三">
+            </div>
+            <div class="slide-item">
+                <img src="../7月项目/imgs/d.jpg" alt="图片四">
+            </div>
+            <div class="slide-item">
+                <img src="../7月项目/imgs/e.jpg" alt="图片五">
+            </div>
+         </div>
+         <!-- /轮播图 -->
+         <!-- 按钮 -->
+         <a href="javascript:void(0);" class="slide-btn prev"></a>
+         <a href="javascript:void(0);" class="slide-btn next"></a>
+         <!-- /按钮 -->
+    </div>
+
+    <script type="text/javascript" src="./jquery.js"></script>
+    
+    <script type="text/javascript">
+        $(function(){
+            $('.slide').slide();
+        });
+        $.fn.slide = function(){
+    var slideEle = $(this);
+
+    var slideContent = slideEle.find('.slide-content');
+    var slideNavLi = slideEle.find('.slide-nav li');
+    var slideWidth = slideEle.width(); //显示窗口宽度
+    var timer = null;   //定时器
+    var time = 2000;    //轮播图切换事件(毫秒)
+    var index = 0;  //当前索引值
+    var oldLength = slideEle.find('.slide-item').length;    //item初始长度
+    var length = oldLength*2;   //item复制后的长度 
+
+    init();
+
+    //初始化
+    function init(){
+        //将item复制一份加入到原item的后面，形成:原1、原2、原3、原4、...原末、复1、复2、复3、复4...复末,并定位到复1项
+        index = oldLength;
+        slideContent.append(slideContent.html()).css({width:slideWidth*length,left:-slideWidth*index});
+
+        //鼠标悬浮事件
+        slideEle.hover(function(){  //移除定时任务
+            clearInterval(timer);
+        },function(){   //添加定时任务    
+            setTimer();
+        });
+
+        //按钮点击事件
+        slideEle.find('.prev').click(function(){
+            if(!slideContent.is(':animated')){
+                index--;
+                change();
+            }
+
+        }).end()
+        .find('.next').click(function(){
+            if(!slideContent.is(':animated')){
+                index++;
+                change();
+            }   
+        });
+
+        //导航点点击事件委托
+        slideNavLi.click(function(event){
+            index = $(event.target).index()+oldLength;
+            change();
+        });
+
+        setTimer();
+    }
+    //设置定时器
+    function setTimer(){
+        timer = setInterval(function(){
+            index++;
+            change();
+        },time);
+    }
+
+    function change(){
+        changeSlide();
+        changeNav();
+    }
+
+    //轮播图切换
+    function changeSlide(){
+/*      if(slideContent.is(':animated')){
+            return;
+        }*/
+        slideContent.animate({left:-slideWidth*index},500,function(){
+            //原1、原2、原3、原4、...原末、复1、复2、复3、复4...复末
+            if(index <= 0){ 
+                //当定位到原1时，在回调函数中将slideContent瞬间定位到复1
+                index = oldLength;
+                slideContent.css({left:-slideWidth*index});
+
+            }
+            if(index >=length-1){
+                //当定位到复末时，在回调中将slideContent瞬间定位到原末
+                index = oldLength-1;
+                slideContent.css({left:-slideWidth*index}); 
+            }
+        });
+    }
+    //导航点切换
+    function changeNav(){
+        slideNavLi.removeClass('active').eq(index%oldLength).addClass('active');
+    }
+
+}
+    </script>
+</body>
+</html>

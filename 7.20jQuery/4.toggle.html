@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <button>显示</button>
+    <div class="box"></div>
+    <script>
+        // 页面加载时 触发
+        $(window).on("load", function () {
+            $(".box").css({
+                width: "100px",
+                height: "100px",
+                backgroundColor: "red"
+            });
+            // 给button绑定点击事件
+            $("button").on("click", function () {
+                $(".box").toggle();
+            })
+        })
+        // jQuery 方法 封装完毕， 只要需要知道   怎么用、返回值是什么
+    </script>
+</body>
+
+</html>

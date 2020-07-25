@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 300px;
+            left: 200px;
+        }
+        .box{
+            position: relative;
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            left: 40px;
+            top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+    <script>
+
+        $(window).ready(function () {
+            for (var i = 0; i < 100; i++) {
+                $("body").append("<p>我是内容</p>")
+            };
+            // 获取滚动条高度
+            $(document).on("scroll",function(){
+                var top = $(document).scrollTop();
+                console.log(top);
+            })
+        });
+
+        // 获取元素位置的偏移量
+        // var obj = $(".wrap").scrollTop();
+        // console.log(obj);
+
+        // position: 元素相对父元素的偏移量
+        var obj = $(".box").position();
+        console.log(obj);
+        // 元素相对窗口的偏移量  (position后 left/top的值)
+        var obj2 = $(".box").offset();
+        console.log(obj2);
+
+        // 相关:放大镜
+    </script>
+</body>
+
+</html>

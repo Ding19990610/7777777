@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        .active{
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // css(option)---->>>给元素添加样式,返回jQuery对象
+        // para1:对象:key : value   css样式属性
+        // 注意:key值用驼峰命名法
+
+        // 优势: 可以继续使用jQuery下的API
+
+        $(".box").css({
+            width:"100px",
+            height:"100px",
+            backgroundColor:"red",
+        }).addClass("active")
+        // var res = $(".box").css({
+        //     width:"100px",
+        //     height:"100px",
+        //     backgroundColor:"red"
+        // }).hide();  //返回的都是jQuery对象
+
+        // 通过修改类名，添加/修改样式
+
+        // addClass(str)
+        // 作用: 给html 添加类名  并 返回jQuery对象
+
+        // para----  类名字符串
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>点击</button>
+    <div class="box"></div>
+    <script>
+        $(".box").css({
+            width: "100px",
+            height: "100px",
+            backgroundColor: "red"
+        })
+        $("button").on("click", function () {
+            console.log("jQuery的事件绑定");
+            $(".box").hide(500, function () {
+                // 隐藏动画执行完毕后
+                $(".box").show(500);
+            });
+        })
+    </script>
+</body>
+
+</html>

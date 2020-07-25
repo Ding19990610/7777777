@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.glass{
+    width: 70%;
+    margin: 10px auto;
+
+}
+.btn{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background-color: skyblue;
+    text-align: center;
+    color:#FFF;
+   cursor: pointer;
+}
+.left{
+    position: relative;
+    left: 10%;
+    top: 20px;
+    width: 300px;
+    height: 400px;
+}
+.left .bigImg{
+    width: 300px;
+    height: 300px;
+}
+.left .bigImg img{
+    width: 300px;
+    height: 300px;
+}
+ .smImg{
+    width: 300px;
+    height: 80px;
+    display: flex;
+}
+ .smImg img{
+    display: block;
+    width: 60px;
+    height: 80px;
+}
+.mark{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+}
+.glassView{
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    z-index: 999;
+    /* display: none; */
+}
+.glassView img{
+    width: 600px;
+    height: 600px;
+    position: relative;
+
+}
+.right{
+    position: absolute;
+    left: 55%;
+    top: 80px;
+    width: 400px;
+    height: 400px;
+}
+.right h3,
+.right .nice,
+.right .price{
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+}
+.right .price{
+    color:red
+}
+.right .addCar{
+    width: 200px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background-color: red;
+    color:#fff;
+    border-radius: 10px;
+    
+}
+hr{
+    margin-top: 20px;
+}
+.goodsList{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 410px;
+    position: relative;
+}
+.goodsItems{
+    width: 20%;
+    height: 240px;
+    float: left;
+}
+.goodsItems img{
+    display: block;
+    width: 80%;
+    height: 180px;
+    margin-left: 10%;
+}
+.goodsItems h4{
+    width: 100%;
+    font-size: 12px;
+    height: 32px;
+    line-height: 16px;
+    text-align: center; 
+}
+.goodsItems .goodsPrice{
+    float: left;
+    margin-left: 5%;
+    vertical-align: middle;
+}
+.goodsItems .mack{
+    float: right;
+    margin-right: 5%;
+   margin-top: 2px;
+}
+.goodsItems .mack span{
+    font-size: 12px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        h1{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>我是内容001</h1>
+    <h1>我是内容002</h1>
+    <h1>我是内容003</h1>
+    <h1>我是内容004</h1>
+    <h1>我是内容005</h1>
+    <h1>我是内容006</h1>
+    <h1>我是内容007</h1>
+    <h1>我是内容008</h1>
+    <h1>我是内容009</h1>
+    <h1>我是内容010</h1>
+    <script>
+        $("h1").on("click",function(){
+            console.log(this);
+            // 把dom对象转变为jQuery对象
+            // $(this).css({color:red})
+            // $(this).remove();
+            this.remove();
+            console.log($(this),this);
+
+        })
+    </script>
+</body>
+</html>

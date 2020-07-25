@@ -4,15 +4,15 @@
     list-style: none;
     box-sizing: border-box;
 }
-body{
+html,body{
     width: 100%;
-    height: 100%;
 }
 nav{
     margin-top: 20px;
     width: 70%;
     margin-left: 15%;
 }
+
 nav>ul{
     width: 100%;
     height: 30px;
@@ -21,25 +21,97 @@ nav>ul{
     justify-content: space-around;
 }
 nav>ul>li{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    list-style: none;
+}
+
+.goodsClassify{
+    width: 60px;
     height: 30px;
     line-height: 30px;
-    cursor: pointer;
+    text-align: center;
 }
-.banner{
+.goodsClassify:hover{
+    background-color: blueviolet;
+    color:#fff;
+}
+.all {
+    width: 70%;
+    height: 370px;
+    margin: 20px auto;
+    position: relative;
+}
+.screen {
+    width: 100%;
+    height: 370px;
+    overflow: hidden;
+    position: absolute;
+}
+.screen ul {
+    position: relative;
+    left: 0;
+    top: 0px;
+    width: 4650px;
+}
+.screen li {
+    width: 20%;
+    height: 370px;
+    overflow: hidden;
+    float: left;
+}
+
+
+
+.goodsList{
     width: 70%;
     margin-left: 15%;
-    height: 320px;
     margin-top: 20px;
     position: absolute;
 }
-.banner img{
+.goodsItems{
+    width: 20%;
+    height: 240px;
+    float: left;
+}
+.goodsItems img{
+    display: block;
+    width: 80%;
+    height: 180px;
+    margin-left: 10%;
+}
+.goodsItems h4{
     width: 100%;
-    height: 370px;
-    border-radius: 20px;
-    position: absolute;
-    display: none;
+    font-size: 12px;
+    height: 32px;
+    line-height: 16px;
+    text-align: center; 
 }
-.show{
-    display: block !important;
+.goodsItems .goodsPrice{
+    float: left;
+    margin-left: 5%;
+    vertical-align: middle;
 }
-
+.goodsItems .mack{
+    float: right;
+    margin-right: 5%;
+   margin-top: 2px;
+}
+.goodsItems .mack span{
+    font-size: 12px;
+}
+.backTop{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: blue;
+    color:#ccc;
+    position:fixed;
+    right: 0;
+    bottom: 100px;
+}

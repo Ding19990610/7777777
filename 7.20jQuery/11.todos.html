@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+
+<body>
+    <input type="text" name="" id="">
+    <div class="content">
+
+    </div>
+    <script>
+        $("p").on("click", function () {
+            // 等淡出动画执行完毕后再删除
+            $(this).fadeOut(500, function () {
+                $(this).remove();
+            });
+        })
+        $("input[type=text]").on("keydown", function (e) {
+
+            if (e.keyCode == 13) { //回车键的unicode
+                // 获取  或者 设置  input的value值
+                var val = $("input[type=text]").val();
+                var p = `<p>${val}</p>`;
+                p = $(p).css({
+                    display: "none"
+                })
+                $(".content").append(p);
+                // 插入的p标签，有淡入淡出的动画效果
+                $("p").fadeIn(1000);
+                $("input[type=text]").val("");
+
+                // 获取所有的p标签
+                // $("p")  选中元素有p、  已经存在的p   存在多次绑定同一个事件，导致事件处理函数 多次触发
+                // 优化$(p) 只是给当前选中的p标签绑定点击实际那 ，不会多次执行同一个函数
+                // --->>初始化的标签不会被选中----》在最上面选中一次
+                $(p).on("click", function () {
+                    // 等淡出动画执行完毕后再删除
+                    $(this).fadeOut(500, function () {
+                        $(this).remove();
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            border: 2px solid #999;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap"></div>
+
+    <script>
+        var news = [
+            "天气预告：今天星期一,天气---阴      ",
+            "天气预告：今天星期二,天气---雷阵雨  ",
+            "天气预告：今天星期三,天气---小雨    ",
+            "天气预告：今天星期四,天气---多云    ",
+            "天气预告：今天星期五,天气---晴天    ",
+            "天气预告：今天星期六,天气---阴转多云",
+            "天气预告：今天星期日,天气---晴转阴  "
+        ]
+        news.forEach(function (item) {
+            $(".wrap").append($(`<p>${item}</p>`));
+
+        })
+        setInterval(() => {
+            $("p:first").animate({
+                marginTop: "-50px"
+            }, 800, function () {
+                // 清除top   不清空有bug
+                $("p").css({
+                    marginTop: "0px"
+                });
+                $(".wrap").append($("p:first"));
+            })
+        }, 1200)
+        // bug:闪现添加：------animate是异步的，所以没有动画，直接插入
+        // $(".wrap").append($("p:first"));
+        // console.log(item);
+    </script>
+</body>
+
+</html>

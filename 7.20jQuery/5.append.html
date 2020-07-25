@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap"></div>
+   <div class="box"></div>
+    <script>
+        // A.append(B): B 插入 A 标签中
+        $(".wrap").append(" <p>我是添加的内容</p>");
+        // A.appendTo(B):A 插入 B 标签中
+        $(".wrap").appendTo($(".box")); //修改原有的html标签
+
+        // 动画
+
+        // animate:自定义动画
+        // 参数1：执行动画的css样式
+        // 参数2：动画执行之间
+        // 参数3：回调函数：动画执行完毕后 再执行
+        $(".box").animate({
+            opacity:0
+        },1000,function(){
+            console.log("xx");
+        })
+
+        // 添加兄弟元素
+        // before   给wrap添加上一个兄弟元素
+        $(".wrap").before("<div class = 'one'></div>")
+        // after    给wrap添加下一个兄弟元素
+        $(".wrap").after("<div class = 'one'></div>")
+    </script>
+</body>
+</html>

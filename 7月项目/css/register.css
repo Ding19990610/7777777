@@ -26,7 +26,7 @@ form .inpt{
 .tips{
     color:red;
 }
-form #login{
+form #register{
     text-align: center;
     border: 1px solid #ccc;
     background-color: #67c23a;

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            line-height: 50px;
+            text-align: center;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>唐桑玩得好吗</div>
+    <script>
+        function $(str) {
+            return new jQuery(str);
+        }
+
+        function jQuery(el) {
+            this.el = document.querySelector(el);
+        }
+        // jQuery的原型对象下 所有的属性，都可以对jQuery构造函数所实例化的对象执行 直接访问
+        jQuery.prototype = {
+            html: function (str) {
+                // 如何在方法体中找到jQuery对象--->this
+                console.log(this.el);
+                // 如何通过this 在jQuery对象内部 找到   html标签 
+                this.el.innerHTML = str;
+                // 为了链式调用方法，返回jQuery对象
+                return this
+            },
+            css: function (option) {
+                for (var key in option) {
+                    this.el.style[key] = option[key];
+                }
+                return this
+            },
+            // 隐藏元素事件
+            hide: function () {
+                var val = 1;
+                this.el.style.opacity = val;
+                var timer = setInterval(() => {
+                    val -= 0.1;
+                    if (val <= 0) {
+                        this.el.style.opacity = 0;
+                        this.el.style.display = "none";
+                        clearInterval(timer);
+                        return;
+                    }
+                    this.el.style.opacity = val;
+                }, 200);
+                return this;
+            },
+            // 显示元素事件
+            show: function () {
+                this.el.style.display = "block";
+                var val = 0;
+                this.el.style.opacity = val;
+                var timer = setInterval(() => {
+                    val += 0.1;
+                    if (val >= 1) {
+                        this.el.style.opacity = 1;
+
+                        clearInterval(timer);
+                        return;
+                    }
+                    this.el.style.opacity = val;
+                }, 200);
+                return this;
+            },
+            // 点击事件
+            on: function (str, callback, async) {
+                this.el.addEventListener(str, callback, async);
+                return this
+            },
+            // ajav封装
+            ajax: function (option) {
+                // 1、获取需要的数据：方法、地址、参数、callback
+                var {method,data,url,success,error,async} = option;
+                // 2 发送请求对象  分4步
+                // 2.1获取实例化对象
+                var xhr = new XMLHttpRequest();
+                // 2.2如果是get请求
+                if (method === "GET" || method === "get") {
+                    // 1发送get请求
+                    // 1.1 处理请求地址 和 请求参数
+
+                    url += "?";
+                    for (var key in data) {
+                        url += `${key}=${data[key]}&`
+                    }
+                    url = url.slice(0, url.length - 1);
+                    console.log(url);
+
+                    // 以上为处理 想要的url地址（url+data的处理）
+
+                    xhr.open(method, url, async);
+                    xhr.send();
+                    // 2.3  处理响应
+                    xhr.onreadystatechange = function () {
+                        if (xhr.status == 200 && xhr.readyState == 4) {
+                            // 请求成功
+                            // 获取响应数据
+                            var res = xhr.response;
+                            // 请求成功后，执行成功处理函数
+                            success(res);
+                        } else {
+                            // 请求失败后，执行失败处理函数
+                            //  失败情况多，返回xhr对象
+                            error(xhr)
+                        }
+                    }
+                }
+                if (method === "POST" || method === "post") {
+                    var para = "";
+                    for (var key in data) {
+                        para += `${key}=${data[key]}&`
+                    }
+                    para = para.slice(0, para.length - 1);
+                    console.log(para);
+                    xhr.open(method, url, true);
+                    xhr.send(para);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.status == 200 && xhr.readyState == 4) {
+                            // 请求成功
+                            var res = xhr.response;
+                            success(res);
+                        } else {
+                            error(xhr)
+                        }
+                    }
+                }
+            }
+
+        };
+        // $("div").html(str);
+        $("div").html("唐桑玩的好呀");
+        $("div").css({
+            fontSize: "30px",
+            color: "#fff"
+        });
+        $("div").on("click", function () {
+            console.log("点击事件，隐藏div");
+            // $("div").hide("div");
+            // $("div").show("div");
+            this.style.display = "none";
+            console.log($("div"));
+            console.log(this);
+        }, true)
+
+        //1. 对于链式调用：所有的API 返回的都是同一个对象
+    </script>
+</body>
+
+</html>
