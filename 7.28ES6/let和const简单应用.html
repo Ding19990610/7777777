@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>点击变色001</h1>
+    <h1>点击变色002</h1>
+    <h1>点击变色003</h1>
+    <h1>点击变色004</h1>
+    <h1>点击变色005</h1>
+    <script>
+        // var hs=  document.querySelectorAll("h1");
+        // for(let i=0;i<hs.length;i++){
+        //     hs[i].onclick = function(){
+        //         hs[i].style.color = "red";
+        //     }
+        // }
+        // let 随时随地都可以创建私有变量 
+
+        // 如何解决   解决变量污染
+    
+        let a = 1;
+        let b = 2;
+        var arr = [];
+        arr.push(a);
+        arr.push(b);
+        console.log(arr);
+        let [c,d]  = arr
+        console.log(c,d);
+        a = d;
+        b = c ;
+        console.log(a,b);
+
+    </script>
+</body>
+</html>

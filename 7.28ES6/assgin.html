@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {name:"dlf"};
+        var obj1 = {name:"ts",age:18}
+
+        // Object.assign():合并对象 并返回合并后对象
+        // para1:合并后对象
+        // para2-n:合并的对象
+        var res = Object.assign({},obj,obj1);
+        res.dec = "aaa";
+        console.log(res);
+
+        // 把obj合并到obj1中
+        Object.assign(obj1,obj);
+        console.log(obj1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function foo(x, y) {
+      //     y = y || "默认值"; // 以前 给形参设置默认值
+      //     console.log(y);
+      //   }
+      //   foo();
+      // 1 设置默认值
+      function foo1(x, y = "默认值") {
+        console.log(y);
+      }
+      foo1(1, "222");
+
+      // 2：解构赋值设置默认值
+      function foo2({ x = "x", y = "默认值" }) {
+        console.log(x, y);
+      }
+      foo2({ x: 1 });
+
+      // 3 length 表示 有几个没有赋默认值的形参
+      //   function foo3(a,b='aa'){
+
+      //   }
+      //   console.log(foo3.length)
+
+      // function foo(a) {
+      //   if(a===undefined){
+      //       throw new Error("Missing parameter");
+      //   }
+      // }
+      //   foo()
+ 
+      // 默认值应用
+      function throwIfMissing(){
+          throw new Error("Missing parameter");
+      }
+      // 利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+      function a(mustBeProvided = throwIfMissing()) {
+        return mustBeProvided;
+      }
+      a('111')
+      console.log(a('111'));
+    </script>
+  </body>
+</html>

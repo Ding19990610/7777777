@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var test = [];
+      let data = {
+        dongxi: "笔",
+        get _dongxi() {
+          ryf(this.dongxi);
+          return this.dongxi;
+        },
+        set _dongxi(val) {
+          lh(val);
+          this.dongxi = val;
+        },
+      };
+      console.log(data._dongxi);
+      data._dongxi = "书";
+      data._dongxi = "钢笔";
+      data._dongxi = "刘浩";
+
+      function ryf(res) {
+        // 监听有谁获取笔了；给’笔‘ 之前 做包装处理
+        console.log(`尧云峰说：有人获取${res} 我包装完毕`);
+      }
+
+      function lh(val) {
+        // 监听 dongxi 是否变化；并扶着通知 zh 改变了 zh 负责收集具体的信息
+        console.log("刘号说：dongxi 变化了 zc 你快点收集变化 变化为 " + val);
+        zc(val);
+      }
+      function zc(newTest) {
+        console.log("周超说：我已经收集完毕可以修改为" + newTest);
+        test.push(newTest);
+        console.log(test)
+      }
+
+
+      var obj = {}
+      obj.name = data._dongxi
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function two(res, callback) {
+        //   console.log("我搜到信号了", res);
+        //   console.log("开始第二件事 -- 包饺子");
+        //   callback("我是老二：给你 饺子");
+        // }
+        // function one(callback) {
+        //   console.log("开始第一件事");
+        //   callback("我是老大我完成了--面粉", three);
+        // }
+
+        // function three(res) {
+        //   console.log("我已经收到；信号" + res);
+        //   console.log("开始第三件事，下锅煮");
+        // }
+
+        // one(two);
+        var p = new Promise((resolve, reject) => {
+            if (true) {
+                resolve(data)
+            } else {
+                reject('任务失败了')
+            }
+        })
+
+
+        p.then(res => {
+            console.log("开始第一件事:" + data);
+
+            if (true) {
+                return "我是老大我完成了--面粉" + res
+            }
+        }).then(res => {
+            console.log("我搜到信号了", data);
+            if (true) {
+                return "我是老二：给你 饺子" + res
+            }
+        }).then(res => {
+            console.log("我搜到信号了", data);
+            if (true) {
+                return "开始第三件事，下锅煮"
+            }
+        })
+    </script>
+</body>
+
+</html>
+<script>
+    // console.log("我这是同步。。。。。。。。。。。。");
+    // var p = new Promise((resolve, reject) => {
+    //     console.log('异步任务开始了')
+    //     if (true) {
+    //         console.log('------------代办任务即将改变状态了')
+    //         resolve('告诉外界，任务成功完成了')
+    //     } else {
+    //         reject('任务失败了')
+    //     }
+    // })
+
+    // p.then(res => {
+    //     console.log('接收promise 信号', res);
+    //     console.log('我是外界，正在处理成功后事项。')
+    //     if (true) {
+    //         console.log('后续问题为已经处理完毕 可以开始下一个任务了')
+    //     }
+    // }).catch(err => {
+    //     console.log('我是外界；我捕获错误 正在解决错误')
+    // })
+</script>

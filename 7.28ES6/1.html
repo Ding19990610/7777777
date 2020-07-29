@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function bar({a,b}){
+        //     let {a,b} = obj;
+        //     console.log(a,b);
+        // }
+        // bar({
+        //     a:2,
+        //     b:3
+        // })
+
+        // let arr = [1,2,3,{age:12,name:"wq"}];
+        // let [a,b,c,{age,name}] = arr ;
+        // console.log(a,b,c,age,name)  ;
+
+        let obj = {a:{c:11},b:[1,2]};
+        let {a:{c},b:[n,m]} = obj;
+        console.log(c,n,m);
+    </script>
+</body>
+</html>

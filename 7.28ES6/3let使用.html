@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   for (var i = 0; i < 3; i++) {
+    //     setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   }
+
+    //   for (var i = 0; i < 3; i++) {
+    //     // 3 次 3 个独立局部作用域
+    //     (function (i) {
+    //       // 分别在各自的作用
+    //       域中执行
+    //       setTimeout(function () {
+    //         console.log(i);
+    //       }, 0);
+    //     })(i);
+    //   }
+
+    //   // for 中的let  默认() 中let 为父级作用域， {} let为子作用域
+    // 小括号每次执行会形成一个独立的块级域；所以可以解决变量污染问题
+      for (let i = 0; i < 3; i++) {
+          // 执行3次 3个独立的块级作用域
+        setTimeout(function () {
+            // 访问自己块级作用于中的i 
+          console.log(i);
+        }, 0);
+      }
+
+    // 分步骤理解 
+    //   {
+    //       let i = 0;
+    //       setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   }
+    //   {
+    //       let i = 1
+    //       setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   }
+    //   {
+    //       let i = 2
+    //       setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   }
+    </script>
+  </body>
+</html>
