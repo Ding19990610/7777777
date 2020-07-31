@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            width: 100px;
+            height: 100px;
+             background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过v-html插入的元素，所有指令都是失效的
+        1.用指令操作dom元素
+        2、指令失效 怎么操作dom?
+                -----在vue中 直接操作dom
+        3、在vue中如何直接操作dom ？
+            ---------生命周期函数mounted() 函数 直接操作dom       
+            ---------
+        -->
+        <section v-html="tmp"></section>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+   
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+            tmp:`<div :class="active" name = "aa"></div>`,
+            active:"aaa"
+        },
+        methods:{
+            
+        },
+        mounted(){
+            console.log("aa");
+            var div = document.querySelector("div[name=aa]");
+            console.log(div); 
+            div.className = this.active;
+        }
+    });
+    
+</script>

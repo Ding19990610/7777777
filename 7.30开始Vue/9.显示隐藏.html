@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-show = "false">唐桑强一批</h1>
+
+        <!--
+            面试题:
+            v-if    v-show的区别
+            v-if:    注释节点、标签被删除
+            v-show:  display:none
+            需要频繁控制元素显示隐藏的话，使用v-show，减少操作dom，提高性能
+             v-if 进入新页面   去除公共的标签样式
+        -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+   
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+        },
+        methods:{
+            
+        }
+    });
+    
+</script>

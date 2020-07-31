@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 轮播图 */
+        .wrap {
+            width: 80%;
+            height: 450px;
+            margin: 40px auto;
+            position: relative;
+            /* overflow: hidden; */
+        }
+
+        .wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+
+        }
+
+        #pare,
+        #next {
+            width: 30px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            cursor: pointer;
+            top: 200px;
+        }
+
+        #pare {
+            left: 0;
+        }
+
+        #next {
+            right: 0;
+        }
+
+        .show {
+            display: block !important;
+            /* 优先级 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrap">
+
+            <img :src="imgs[index]" alt="">
+            <div id="pare" @click="pare" @mouseleave="leave">
+                < </div> <div id="next" @click="next" @mouseleave="leave"> >
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            imgs: ["./imgs/a.jpg",
+                "./imgs/b.jpg",
+                "./imgs/c.jpg",
+                "./imgs/d.jpg",
+                "./imgs/e.jpg",
+                "./imgs/a.jpg"
+            ],
+            index: 0
+        },
+        methods: {
+            pare: function () {
+
+                this.index--;
+                if (this.index < 0) {
+                    this.index = 4
+                }
+                clearInterval(res);
+            },
+            next: function () {
+                this.index++;
+                if (this.index > 4) {
+                    this.index = 0
+                }
+                clearInterval(res);
+            },
+            leave: function () {
+                window.setInterval(() => {
+                    if (this.index < 0) {
+                        this.index = 4
+                    } else if (this.index > 4) {
+                        this.index = 0
+                    } else {
+                        this.index++
+                    }
+                }, 1000) 
+            }
+
+
+        },
+        mounted() {
+            return res = window.setInterval(() => {
+                if (this.index < 0) {
+                    this.index = 4
+                } else if (this.index > 4) {
+                    this.index = 0
+                } else {
+                    this.index++
+                }
+            }, 1000)
+
+        }
+
+    });
+</script>

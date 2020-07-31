@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <dd>
+            <!-- 声明的item变量，仅作用于div标签内 -->
+        <dt v-for="(item,index) in list" v-if="item.age>20">
+            姓名:{{item.name}}----年龄:{{item.age}}
+        </dt>
+        </dd>
+        <template v-for = "(item,index) in arr">
+            <span>{{index}}</span>---------<span>{{item}}</span>
+        </template>
+        <!-- template:  在vue-cli中 无法使用了，用transition标签代替 -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            list: [{
+                    name: "唐桑",
+                    age: 20
+                },
+                {
+                    name: "丁桑",
+                    age: 20
+                },
+                {
+                    name: "坤坤",
+                    age: 30
+                }
+            ],
+            arr:["aa","bb","cc"]
+        },
+        methods: {
+
+        }
+    });
+</script>

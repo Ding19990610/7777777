@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click = "toggle">{{txt}}</button>
+        <div class="box" v-show ="flag"></div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+    // vue  是  数据  驱动 视图
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+            txt:"隐藏",
+            flag:true
+        },
+        methods:{
+            toggle:function(){
+                this.txt = "显示";
+                
+                if(this.flag){
+                    this.txt = "显示"
+                }else{
+                    this.txt = "隐藏"
+                }
+                this.flag = !this.flag;
+            }
+        }
+    });
+    
+</script>

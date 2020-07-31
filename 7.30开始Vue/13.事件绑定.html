@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <!--  @keydown.enter:按下回车才会触发事件 -->
+            <input type="text" :value = "ipt" @input="input"
+            @keydown.enter.prevent = "keyHandle">
+            
+            <!-- @click.prevent 阻止浏览器的默认事件 -->
+            <!-- @click.prevent.stop  阻止浏览器默认事件 和 事件冒泡-->
+            <!-- .enter:只有按下回车键 才会触发事件 -->
+
+            <button @click.prevent.stop = "submit">提交</button>
+            <p @click = "BUG">嘻嘻嘻</p>
+        </form>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+//    v-on:事件名 = "事件处理函数"
+// 简写   @事件名 =  "事件处理函数"
+
+    // 特殊情况:
+        // 1、阻止浏览器默认行为: 事件冒泡、指定按键……【修饰符】
+
+    // @时间名.修饰符 = "事件处理函数"
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+            ipt:"嘻嘻嘻", //input输入的内容
+        },
+        methods:{
+            submit:function(e){
+                // console.log(e);//window的事件对象
+                console.log(this.ipt + "点击按钮submit提交");
+                // e.preventDefault();
+            },
+            input(e){
+                // console.log(e.target.value);//用户输入的内容,直接操作dom
+                this.ipt = e.target.value;
+            },
+            keyHandle(){
+                console.log(this.ipt + "键盘回车打击");
+            },
+            BUG(e){
+                console.log(e.target);
+            }
+        }
+    });
+    
+</script>

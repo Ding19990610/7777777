@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- vue动态给html属性插入值 -->
+
+        <!-- v-bind:attr 给h5属性 动态绑定值 
+        简写:      :attr 
+        -->
+        <!-- <img v-bind:src="imgs" alt=""> -->
+        <img :class="className" :src="imgs" alt="">
+        <!-- <img :src="imgs" alt=""> -->
+        
+        <!-- 注意区分属性的值，什么时候是变量，什么时候是属性差值 -->
+
+        <!-- vue中的变量:data,methods…… 对象中的属性 -->
+        <input type="text" :value="val + '嘻嘻嘻'">
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+// 什么是指令？
+    // v-xxx :可以由vue完成功能 的 语法糖
+// 语法糖:语法糖是指在不影响功能的情况下,添加某种方法实现同样的效果,从而方便程序开发.Vue.js的v-bind和v-on指令都提供了语法糖,也可以说是缩写,比如 v-bind,可以省略v-bind,直接写一个冒号 : 
+
+    // 实例化vue对象
+    var app = new Vue({
+        el:"#app", //指定模板根目录
+        data:{
+            wyh:"wyh",
+            imgs:"../7月项目/imgs/a.jpg",
+            className:"ts ds",
+            val:"唐桑乱滋"
+        }
+    });
+    console.log(app);
+</script>

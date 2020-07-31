@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model:数据双向绑定 
+            数据变化，视图也变化
+            视图变化，数据也变化
+        -->
+        <input type="text" v-model = "ipt">
+        <h1>{{ipt}}</h1>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+</html>
+<script>
+   
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+            ipt:""
+        },
+        methods:{
+            
+        }
+    });
+    
+</script>

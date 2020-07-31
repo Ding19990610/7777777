@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .todo {
+            width: 400px;
+            height: auto;
+            margin: 20px auto;
+        }
+
+        .ipt {
+            width: 100%;
+
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .list {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            height: 40px;
+            line-height: 40px;
+            justify-content: space-around;
+        }
+
+        .list input {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+           vertical-align: middle;
+        }
+
+        .list span {
+            width: 200px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .list button {
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="todo">
+            <input type="text" class="ipt" v-model = 'value'  @keydown.enter="add()">
+            <div class="list" v-for="(list,index) in lists">
+                <input type="checkbox">
+                <span>{{list}}</span>
+                <button @click = "remove(lists,index)">删除</button>
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</body>
+
+</html>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            value:'',
+            lists:[]
+        },
+        methods:{
+            add(){
+                this.lists.push(this.value);
+                this.value = '';
+            },
+            remove(arr,index){
+                arr.splice(index,1)
+            }
+        }
+    })
+</script>
