@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+
+        .fade-enter,
+        .fade-leave-to/* .fade-leave-active below version 2.1.8 */{
+            opacity: 0;
+        }
+
+
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="toggle">toggle</button>
+        <transition name="fade">
+            <div class="box" v-if="flag"></div>
+        </transition>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            flag:true
+        },
+        methods: {
+            toggle(){
+                this.flag = !this.flag;
+            }
+        }
+    });
+</script>

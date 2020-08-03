@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            transition: all 2s;
+            background-color: red;
+            animation: tangsang 2s ;
+        }
+        @keyframes tangsang{
+            from{
+                opacity: 1;
+            }to{
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+        <button id="btn"> 变长</button>
+    <div class="box" id="box"></div>
+    
+</body>
+</html>
+<script>
+   
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){
+        setTimeout(function(){
+            box.style.width = "500px"
+        },16.7)
+    };
+    box.addEventListener("transitionstart",function(){
+        console.log("刚开始执行动画就执行");
+    })
+    box.addEventListener("transitionend",function(){
+        console.log("动画执行完毕了才执行");
+    })
+    // css3中属性  动画  过渡 都有对应的事件监听 
+</script>

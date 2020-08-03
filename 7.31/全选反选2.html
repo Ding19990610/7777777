@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <dd>
+        <dt>
+            <input type="checkbox" v-model="allChecked" @change="all">
+            <span>{{txt}}</span>
+            <input type="checkbox" @change="resver">
+            <span>反选</span>
+        </dt>
+        <dt v-for="(item,index) in formList">
+            <input type="checkbox" v-model="checkedArr" :value="item.id">
+            <span>{{item.name}}</span>
+        </dt>
+        </dd>
+        <h1 v-for="item in checkedArr">{{item}}</h1>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            formList: [{
+                    id: "AA",
+                    name: "aa"
+                },
+                {
+                    id: "BB",
+                    name: "bb"
+                },
+                {
+                    id: "CC",
+                    name: "cc"
+                },
+                {
+                    id: "DD",
+                    name: "dd"
+                },
+                {
+                    id: "EE",
+                    name: "ee"
+                },
+                {
+                    id: "FF",
+                    name: "ff"
+                },
+                {
+                    id: "GG",
+                    name: "gg"
+                }
+            ],
+            checkedArr: [],
+            allChecked: false,
+            txt: "全选"
+        },
+        methods: {
+            all() {
+                this.checkedArr = [];
+                if (this.allChecked) {
+                    this.formList.forEach(item => {
+                        this.checkedArr.push(item.id);
+                    })
+                    this.txt = "全不选";
+                } else {
+                    this.checkedArr = [];
+                    this.txt = "全选";
+                }
+                if(this.checkedArr.length ==this.formList.length){
+                    this.allChecked = false;
+                }
+
+            },
+            resver() {
+                let res = [];
+                var flag = false;
+                for (var i = 0; i < this.formList.length; i++) {
+                    for (var j = 0; j <= this.checkedArr.length; j++) {
+                        if (this.formList[i].id == this.checkedArr[j]) {
+                            flag = true;
+                            break;
+                        } else {
+                            flag = false;
+                        }
+
+                    }
+                    if (!flag) {
+                        res.push(this.formList[i].id);
+                    }
+                }
+                this.checkedArr = res;
+                if(this.checkedArr.length !=this.formList.length){
+                    this.allChecked = false;
+                }
+            }
+        }
+    });
+</script>

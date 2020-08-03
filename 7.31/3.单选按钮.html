@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如何获取 用户选中了 哪个选择， 以及 选择的【内容】是什么？
+        -----【内容】 是 【value】值
+        -->
+        <input type="radio" id="one" v-model = "radioVal" value="One">
+        <label for="one">One</label>
+        <input type="radio" id="two"  v-model = "radioVal"  value="Two">
+        <label for="two">Two</label>
+        <input type="radio" id="three" v-model = "radioVal" value="Three">
+        <label for="three">Three</label>
+        <input type="radio" id="four"  v-model = "radioVal"  value="Four">
+        <label for="four">Four</label>
+        <h1>{{radioVal}}</h1>
+        <button @click = "getRadioVal">获取你选择的按钮[的值]</button>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            radioVal:"",//表示用户选择的input，并用来存储该input的值
+        },
+        methods: {
+            getRadioVal(){
+                console.log(this.radioVal);
+            }
+        }
+    });
+   
+</script>
+ <!-- 
+    vue demo 步骤
+    1 确定html 结构
+    2 导入 vue 化vue 对象
+    3 将html 内容 变为 data 中数据
+    4 将data 中数据遍历渲染  --- >完成页面的初始化效果
+    5 拆分用户的行为 ；逐步实现功能。
+      问题：如何通过data 中  实现效果交互
+    6 变量或者数据不够，创建变量；全局 data 非全局 函数里面  
+ -->

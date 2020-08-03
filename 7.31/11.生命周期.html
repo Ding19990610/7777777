@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+</html>
+<script>
+   
+    var app = new Vue({
+        el:"#app", 
+        data:{ 
+            msg:"唐桑真的强"
+        },
+        methods:{},
+        beforeCreate(){
+            
+            // 可以做loading
+            console.log("初始化之前");
+        },
+        created(){
+            // 做页面初始化处理:初始化获取数据，
+            console.log("页面初始化");
+        },
+        beforeMount(){
+            console.log("数据渲染前");
+        },
+        mounted(){
+            // 这里可以访问dom
+            // 在这操作dom元素
+            console.log("数据渲染完成");
+        },
+        beforeUpdate(){
+            console.log("数据更新前");
+        },
+        updated(){
+            // 当data中的数据更新的时候，触发
+            console.log("数据更新");
+        },
+        distory(){
+            // 这里清空所有的timer
+            // 销毁的时候触发
+        }
+        
+
+    });
+    app.$mount("#app"); //指定根元素
+    
+</script>

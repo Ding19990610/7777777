@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 实现用户选择select  option   与 selectedCity 之间的数据双向绑定 -->
+        <select name="city" id="city" @change = "changeCity" v-model="selectedCity">
+            <option :value="item"  v-for="(item,index) in city" >{{item}}</option>
+        </select>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+</html>
+<script>
+   
+    var app = new Vue({
+        el:"#app", 
+        data:{
+            //渲染option视图数据
+            city:[  
+                "新疆","南京","苏州","常州"
+            ],
+            // 表示用户选择的option的value值
+            selectedCity:"新疆"
+        },
+        methods:{
+            changeCity(){
+                console.log(this.selectedCity);
+            }
+        }
+    });
+    
+</script>

@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/animate.css/animate.min.css">
+  <link rel="stylesheet" href="./font/iconfont.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 300px;
+      height: 300px;
+      padding: 10px;
+      position: relative;
+      left: calc(50% - 150px);
+      top: 40px;
+      background-color: #ccc;
+    }
+
+    i {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      text-align: center;
+      transform-origin: 50% 50%;
+    }
+
+    .go {
+      transition: all 0.2s;
+    }
+
+    .to {
+      transform: rotate(180deg);
+      transition: all 0.2s;
+    }
+
+    .box input {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      padding-left: 40px;
+      font-family: KaiTi;
+    }
+
+    .box input:hover {
+      border: 1px solid #333;
+    }
+
+    .selects {
+      width: 100%;
+      height: 0;
+      margin-top: 20px;
+      background-color: #fff;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+
+    .selects span {
+      display: block;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      background-color: #fff;
+      padding-left: 40px;
+      cursor: pointer;
+      z-index: 9999;
+      font-family: KaiTi;
+    }
+
+    .selects span:hover {
+      color: blue;
+      font-weight: bolder;
+      /* background-color: royalblue; */
+    }
+
+    .triangle {
+      width: 100%;
+      height: 10px;
+      background-color: #ccc;
+    }
+
+    .arrow {
+      margin-left: 50px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid #fff;
+
+    }
+  </style>
+</head>
+
+<body @click="showSelectDataSrc=false">
+  <div id="app">
+    <div class="box">
+      <input type="text" :value="choosedFood" @click.stop="showSelects" placeholder="请输入你爱吃的食品" readonly>
+      <i :class="flag ?  'iconfont icon-xiajiantou go' : 'iconfont icon-xiajiantou to'"></i>
+
+      <!-- 食品+三角形 -->
+      <div class="selects" :style="{height:height +'px'}" @click.stop="showSelectDataSrc=true">
+        <!--//三角形箭头 -->
+        <div class="triangle">
+          <div :class="{arrow:true}"></div>
+        </div>
+        <!-- 食品内容 -->
+        <span v-for="(item,index) in options" @click.stop="chooseFood(index)">{{item.label}}</span>
+      </div>
+    </div>
+  </div>
+  <script src="./vue.js"></script>
+</body>
+
+</html>
+
+<!-- 
+  1、 完成初步css样式
+  2、点击input 显示selects块
+  3、点击input 箭头旋转
+  4、点击input selects块  显示/隐藏的动画   height
+  5、selects>span内容 赋到input里   :value
+  6、点击selects块元素外部  隐藏selects块   对内部几个点击事件做  阻止冒泡
+
+ -->
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+
+      options: [{
+          value: '选项1',
+          label: '黄金糕'
+        },
+        {
+          value: '选项2',
+          label: '双皮奶'
+        },
+        {
+          value: '选项3',
+          label: '蚵仔煎'
+        },
+        {
+          value: '选项4',
+          label: '龙须面'
+        },
+        {
+          value: '选项5',
+          label: '北京烤鸭'
+        }
+      ],
+      height: "", //食品+三角形  总高度
+      flag: true, // 修改 箭头的旋转
+      choosedFood: "", //获取 点击的食品
+      open: true, //点击input 展开【食品+三角形 】块  true/false  
+    },
+    methods: {
+      showSelects() {
+        // this.height = this.open ? 210 : 0
+        this.height = this.open ? (40 * this.options.length + 10) : 0
+        this.open = !this.open;
+
+        this.flag = !this.flag;
+      },
+      chooseFood(index) {
+        this.choosedFood = this.options[index].label;
+        console.log(this.options[index].label);
+        this.height = 0
+        this.open = !this.open;
+        
+        this.flag = !this.flag;
+      },
+    },
+    mounted() {
+      // 控制窗口外部点击 使得窗口消失
+      document.addEventListener('click', function (e) {
+        if (e.target.className != 'selects' &&  window.app.height != 0) {
+          // console.log(window.app);  //VUE
+
+          window.app.open = ! window.app.open;
+          window.app.height = 0;
+        }
+      })
+    },
+
+  });
+</script>
